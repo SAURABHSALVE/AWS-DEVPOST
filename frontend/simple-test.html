@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Backend Test</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/components/buttons.css">
+    <link rel="stylesheet" href="styles/components/cards.css">
+</head>
+<body>
+    <div class="container" style="max-width: 800px; margin: 2rem auto;">
+        <h1>Simple Backend Connection Test</h1>
+        <p>Testing direct connection to backend endpoints.</p>
+        
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">Backend Status</h3>
+            </div>
+            <div class="card-body">
+                <div id="status-display">
+                    <p>Click the buttons below to test backend endpoints:</p>
+                </div>
+                
+                <div class="form-actions mt-6">
+                    <button id="test-health" class="btn btn-primary">Test /health</button>
+                    <button id="test-ready" class="btn btn-secondary">Test /ready</button>
+                    <button id="test-api-status" class="btn btn-secondary">Test /api/status</button>
+                    <button id="clear" class="btn btn-secondary">Clear</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="mt-6">
+            <a href="index.html" class="btn btn-secondary">← Back to Home</a>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const statusDiv = document.getElementById('status-display');
+            
+            document.getElementById('test-health').addEventListener('click', () => testEndpoint('/health'));
+            document.getElementById('test-ready').addEventListener('click', () => testEndpoint('/ready'));
+            document.getElementById('test-api-status').addEventListener('click', () => testEndpoint('/api/status'));
+            document.getElementById('clear').addEventListener('click', () => {
+                statusDiv.innerHTML = '<p>Click the buttons below to test backend endpoints:</p>';
+            });
+            
+            async function testEndpoint(endpoint) {
+                const url = `http://localhost:8080${endpoint}`;
+                const timestamp = new Date().toLocaleTimeString();
+                
+                try {
+                    statusDiv.innerHTML = `
+                        <div class="loading-container">
+                            <div class="loading-spinner"></div>
+                            <div class="loading-text">Testing ${endpoint}...</div>
+                        </div>
+                    `;
+                    
+                    const response = await fetch(url);
+                    
+                    if (!response.ok) {
+                        throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                    }
+                    
+                    const data = await response.json();
+                    
+                    statusDiv.innerHTML = `
+                        <div class="alert alert-success">
+                            <strong>✅ ${endpoint} - SUCCESS</strong><br>
+                            <small>Time: ${timestamp}</small><br>
+                            <small>URL: ${url}</small><br>
+                            <details style="margin-top: 0.5rem;">
+                                <summary style="cursor: pointer;">Response Data</summary>
+                                <pre style="background: rgba(0,0,0,0.1); padding: 0.5rem; border-radius: 4px; margin-top: 0.5rem; font-size: 0.8rem; overflow-x: auto;">${JSON.stringify(data, null, 2)}</pre>
+                            </details>
+                        </div>
+                    `;
+                    
+                } catch (error) {
+                    statusDiv.innerHTML = `
+                        <div class="alert alert-error">
+                            <strong>❌ ${endpoint} - FAILED</strong><br>
+                            <small>Time: ${timestamp}</small><br>
+                            <small>URL: ${url}</small><br>
+                            <strong>Error:</strong> ${error.message}<br>
+                            <small>Make sure the backend server is running on http://localhost:8080</small>
+                        </div>
+                    `;
+                }
+            }
+            
+            // Auto-test health endpoint on page load
+            setTimeout(() => testEndpoint('/health'), 500);
+        });
+    </script>
+</body>
+</html>
