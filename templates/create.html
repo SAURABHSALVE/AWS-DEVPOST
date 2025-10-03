@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Create Content - Content Agent</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      /* --- CSS Variables for Theme Consistency --- */
+      :root {
+        /* Base Colors (Dark Mode Default) */
+        --bg: #111827;
+        --card: #1f2937;
+        --text: #f9fafb;
+        --muted: #9ca3af;
+        --border: #374151;
+        /* Emerald Accents */
+        --primary: #10b981;
+        --primary-600: #059669;
+        --accent: #34d399;
+        /* Special UI Colors */
+        --shadow: 0 5px 30px rgba(16, 185, 129, 0.2);
+        --success: #059669; /* emerald-600 for success */
+        --error: #ef4444; /* red-500 for error */
+      }
+
+      /* Light Mode */
+      .light {
+        --bg: #f9fafb;
+        --card: #ffffff;
+        --text: #1f2937;
+        --muted: #4b5563;
+        --border: #d1d5db;
+        --primary: #059669;
+        --primary-600: #047857;
+        --accent: #047857;
+        --shadow: 0 5px 15px rgba(4, 120, 87, 0.1);
+        --success: #10b981; /* emerald-500 for success */
+        --error: #dc2626; /* red-600 for error */
+      }
+
+      /* Apply CSS Variables to Tailwind classes for smooth color transitions */
+      .bg-var-bg { background-color: var(--bg); }
+      .bg-var-card { background-color: var(--card); }
+      .text-var-text { color: var(--text); }
+      .text-var-muted { color: var(--muted); }
+      .border-var-border { border-color: var(--border); }
+      .text-var-primary { color: var(--primary); }
+      .bg-var-primary { background-color: var(--primary); }
+      .hover\:bg-var-primary-600:hover { background-color: var(--primary-600); }
+      
+      /* Form/UI Colors */
+      .input-style {
+        background-color: var(--bg);
+        border: 1px solid var(--border);
+        color: var(--text);
+      }
+      .light .input-style {
+        background-color: var(--card);
+        color: var(--text);
+      }
+      
+      /* Custom Glass Navbar */
+      .navbar-glass {
+        backdrop-filter: blur(8px);
+        background-color: rgba(17, 24, 35, 0.9);
+        transition: background-color 0.5s;
+      }
+      .light .navbar-glass {
+        background-color: rgba(249, 250, 251, 0.9);
+      }
+
+      /* Alert Styles */
+      .alert-error {
+        background-color: rgba(239, 68, 68, 0.15); /* Red-500 with transparency */
+        color: var(--error);
+        border: 1px solid var(--error);
+      }
+      .alert-success {
+        background-color: rgba(16, 185, 129, 0.15); /* Primary with transparency */
+        color: var(--success);
+        border: 1px solid var(--success);
+      }
+
+      /* Button Hover Effect */
+      .btn-primary {
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      }
+      .btn-primary:hover {
+        background-color: var(--primary-600);
+        box-shadow: 0 8px 15px rgba(16, 185, 129, 0.4);
+        transform: translateY(-2px);
+      }
+      .btn-primary:active {
+        transform: translateY(0);
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+      }
+
+    </style>
+  </head>
+  <body class="bg-var-bg text-var-text flex flex-col min-h-screen transition-colors duration-500 font-sans">
+    
+    <nav class="sticky top-0 left-0 right-0 z-50 navbar-glass border-b border-var-border/50">
+      <div class="container mx-auto flex justify-between items-center px-6 md:px-10 py-4">
+        <a href="{{ url_for('index') }}" class="text-var-primary font-bold text-2xl tracking-tight">
+          Content <span class="text-var-accent">Agent</span>
+        </a>
+        <div class="hidden md:flex space-x-10 items-center text-sm font-medium">
+          <a href="{{ url_for('index') }}" class="text-var-text hover:text-var-primary transition-colors duration-300">Home</a>
+          <a href="{{ url_for('features') }}" class="text-var-text hover:text-var-primary transition-colors duration-300">Features</a>
+          <a href="{{ url_for('create') }}" class="text-var-primary font-semibold border-b-2 border-var-primary pb-1">Create</a>
+          <a href="{{ url_for('history') }}" class="text-var-text hover:text-var-primary transition-colors duration-300">History</a>
+          
+          <button
+            id="themeToggle"
+            class="p-2 rounded-full bg-var-card hover:bg-var-primary-600/20 border border-var-border text-var-primary transition-all duration-300"
+            title="Toggle Theme"
+          >
+            <span id="sunIcon" class="hidden">☀️</span>
+            <span id="moonIcon">🌙</span>
+          </button>
+        </div>
+        
+        <div class="md:hidden flex items-center">
+          <button id="menuBtn" class="text-var-text focus:outline-none text-2xl">
+            ☰
+          </button>
+        </div>
+      </div>
+      <div id="mobileMenu" class="hidden md:hidden px-6 pb-4 space-y-2 bg-var-card/90">
+        <a href="{{ url_for('index') }}" class="block text-var-text hover:text-var-primary py-2 transition-colors duration-300">Home</a>
+        <a href="{{ url_for('features') }}" class="block text-var-text hover:text-var-primary py-2 transition-colors duration-300">Features</a>
+        <a href="{{ url_for('create') }}" class="block text-var-primary py-2 font-semibold">Create</a>
+        <a href="{{ url_for('history') }}" class="block text-var-text hover:text-var-primary py-2 transition-colors duration-300">History</a>
+      </div>
+    </nav>
+
+    <section class="container mx-auto px-6 md:px-10 py-16 flex-1">
+      <h1 class="text-4xl font-bold mb-8 text-var-text">📝 Create New Content</h1>
+
+      {% if error %}
+        <div class="alert-error px-4 py-3 rounded-xl mb-6 shadow-md transition-all duration-300">
+          <h2 class="font-bold mb-1 text-lg">⚠️ Error</h2>
+          <p>{{ error }}</p>
+        </div>
+      {% endif %}
+
+      {% if result %}
+        <div class="alert-success px-4 py-3 rounded-xl mb-6 shadow-md transition-all duration-300 whitespace-pre-line">
+          <h2 class="font-bold mb-2 text-lg">✅ Generated Content</h2>
+          <div class="bg-var-bg p-4 rounded-lg border border-var-success text-var-text overflow-x-auto">
+            <pre>{{ result }}</pre>
+          </div>
+        </div>
+      {% endif %}
+
+      <form method="POST" class="bg-var-card p-8 rounded-xl shadow-xl space-y-6 border border-var-border">
+        
+        <div>
+          <label class="block font-semibold mb-2 text-var-text">English Content Brief <span class="text-var-primary">*</span></label>
+          <textarea 
+            name="brief" 
+            rows="5" 
+            class="w-full rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-var-primary input-style transition-colors duration-300" 
+            placeholder="Enter your English brief or source text here (e.g., 'We're releasing a new tool that is the bee's knees!')."
+            required
+          ></textarea>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-6">
+          <div>
+            <label class="block font-semibold mb-2 text-var-text">Target Language</label>
+            <select name="language" class="w-full rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-var-primary input-style transition-colors duration-300">
+              <option class="bg-var-bg text-var-text">German (de)</option>
+              <option class="bg-var-bg text-var-text">Spanish (es)</option>
+              <option class="bg-var-bg text-var-text">French (fr)</option>
+              <option class="bg-var-bg text-var-text">Japanese (ja)</option>
+              <option class="bg-var-bg text-var-text">Portuguese (pt-BR)</option>
+            </select>
+          </div>
+          
+          <div>
+            <label class="block font-semibold mb-2 text-var-text">Target Audience</label>
+            <input 
+              type="text" 
+              name="audience" 
+              class="w-full rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-var-primary input-style transition-colors duration-300" 
+              placeholder="e.g. Tech-savvy Young Adults"
+            />
+          </div>
+          
+          <div>
+            <label class="block font-semibold mb-2 text-var-text">Desired Tone</label>
+            <select name="tone" class="w-full rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-var-primary input-style transition-colors duration-300">
+              <option class="bg-var-bg text-var-text" value="professional">Professional</option>
+              <option class="bg-var-bg text-var-text" value="formal">Formal</option>
+              <option class="bg-var-bg text-var-text" value="casual">Casual</option>
+              <option class="bg-var-bg text-var-text" value="humorous">Humorous</option>
+              <option class="bg-var-bg text-var-text" value="witty">Witty</option>
+            </select>
+          </div>
+        </div>
+
+        <div>
+          <label class="inline-flex items-center cursor-pointer">
+            <input type="checkbox" name="with_image" class="form-checkbox h-5 w-5 text-var-primary bg-var-bg border-var-border rounded focus:ring-var-primary transition-colors duration-300"> 
+            <span class="ml-3 text-var-text">Generate Accompanying Image (Culturally Adapted)</span>
+          </label>
+        </div>
+
+        <div class="pt-4 text-right">
+          <button 
+            type="submit" 
+            class="bg-var-primary text-slate-900 px-8 py-3 rounded-lg font-bold uppercase tracking-wider btn-primary"
+          >
+            Forge Content
+          </button>
+        </div>
+      </form>
+    </section>
+
+    <footer class="bg-var-card border-t border-var-border/50 py-6 mt-12">
+      <div class="container mx-auto px-6 text-center text-var-muted">
+        © 2025 Multi-Lingual Content Agent. All Rights Reserved.
+      </div>
+    </footer>
+
+    <script>
+      // --- Mobile Menu Toggle ---
+      document.getElementById('menuBtn').addEventListener('click', () => {
+        document.getElementById('mobileMenu').classList.toggle('hidden');
+      });
+
+      // --- Theme Toggle Logic (Copied from previous design) ---
+      const htmlEl = document.documentElement;
+      const themeToggle = document.getElementById("themeToggle");
+      
+      const sunIcon = document.getElementById("sunIcon");
+      const moonIcon = document.getElementById("moonIcon");
+      // Note: Mobile icons are not present in this stripped-down nav but are included for completeness if the design were unified.
+
+      function updateThemeIcons(isLightMode) {
+        if (isLightMode) {
+          sunIcon.classList.remove('hidden');
+          moonIcon.classList.add('hidden');
+        } else {
+          sunIcon.classList.add('hidden');
+          moonIcon.classList.remove('hidden');
+        }
+      }
+
+      // Check for saved theme preference or default to dark
+      const isLightMode = localStorage.getItem('theme') === 'light';
+      if (isLightMode) {
+        htmlEl.classList.add('light');
+        htmlEl.classList.remove('dark');
+      }
+
+      // Initial icon setup
+      updateThemeIcons(isLightMode);
+
+      function toggleTheme() {
+        const isCurrentlyLight = htmlEl.classList.contains('light');
+        if (isCurrentlyLight) {
+          htmlEl.classList.remove('light');
+          htmlEl.classList.add('dark');
+          localStorage.setItem('theme', 'dark');
+          updateThemeIcons(false);
+        } else {
+          htmlEl.classList.remove('dark');
+          htmlEl.classList.add('light');
+          localStorage.setItem('theme', 'light');
+          updateThemeIcons(true);
+        }
+      }
+
+      if (themeToggle) {
+        themeToggle.addEventListener('click', toggleTheme);
+      }
+    </script>
+  </body>
+</html>

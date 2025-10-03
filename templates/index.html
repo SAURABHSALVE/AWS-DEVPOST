@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Agent ML | Global Content Forge</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      /* --- CSS Variables for Theme Consistency --- */
+      :root {
+        /* Base Colors (Dark Mode Default) */
+        --bg: #111827;
+        --card: #1f2937;
+        --text: #f9fafb;
+        --muted: #9ca3af;
+        --border: #374151;
+        /* Emerald Accents */
+        --primary: #10b981;
+        --primary-600: #059669;
+        --accent: #34d399;
+        /* Special UI Colors */
+        --shadow: 0 5px 30px rgba(16, 185, 129, 0.2);
+        --title-bg: linear-gradient(
+          90deg,
+          #f9fafb,
+          #d1fae5,
+          #6ee7b7 80%
+        );
+        --json-key-color: #6ee7b7;
+        --json-str-color: #a7f3d0;
+        --json-num-color: #fde047;
+
+        /* Animated Background Colors (Dark Mode) */
+        --animated-bg-color-1: rgba(16, 185, 129, 0.1);
+        --animated-bg-color-2: rgba(52, 211, 153, 0.08);
+        --divider-glow: 0 0 15px var(--primary);
+      }
+
+      /* Light Mode */
+      .light {
+        --bg: #f9fafb;
+        --card: #ffffff;
+        --text: #1f2937;
+        --muted: #4b5563;
+        --border: #d1d5db;
+        --primary: #059669;
+        --primary-600: #047857;
+        --accent: #047857;
+        --shadow: 0 5px 15px rgba(4, 120, 87, 0.1);
+        --title-bg: linear-gradient(
+          90deg,
+          #1f2937,
+          #059669 80%
+        );
+        --animated-bg-color-1: rgba(4, 120, 87, 0.05);
+        --animated-bg-color-2: rgba(5, 150, 105, 0.04);
+        --divider-glow: 0 0 10px var(--primary);
+      }
+
+      /* Apply CSS Variables to Tailwind classes */
+      .bg-var-bg { background-color: var(--bg); }
+      .bg-var-card { background-color: var(--card); }
+      .text-var-text { color: var(--text); }
+      .text-var-muted { color: var(--muted); }
+      .border-var-border { border-color: var(--border); }
+      .text-var-primary { color: var(--primary); }
+      .bg-var-primary { background-color: var(--primary); }
+      .hover\:bg-var-primary-600:hover { background-color: var(--primary-600); }
+      .shadow-var-shadow { box-shadow: var(--shadow); }
+      .bg-title-gradient { background-image: var(--title-bg); }
+
+      /* --- Interactive & Sliding Animations --- */
+
+      /* Custom Glass Navbar */
+      .navbar-glass {
+        backdrop-filter: blur(8px);
+        background-color: rgba(17, 24, 35, 0.9);
+      }
+      .light .navbar-glass {
+        background-color: rgba(249, 250, 251, 0.9);
+      }
+      
+      /* Card Hover Effect */
+      .card-hover {
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        border: 1px solid var(--border);
+      }
+      .card-hover:hover {
+        border-color: var(--primary);
+        box-shadow: var(--shadow);
+        transform: translateY(-4px); 
+      }
+
+      /* Button Hover Effect */
+      .btn-primary {
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      }
+      .btn-primary:hover {
+        background-color: var(--primary-600);
+        box-shadow: 0 8px 15px rgba(16, 185, 129, 0.4);
+        transform: translateY(-2px);
+      }
+      .btn-primary:active {
+        transform: translateY(0);
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+      }
+      
+      /* JSON Syntax Highlighting */
+      .json-container {
+        font-family: 'Fira Code', 'Monaco', monospace;
+        font-size: 0.9rem;
+        line-height: 1.6;
+      }
+      .json-key { color: var(--json-key-color); }
+
+      /* --- Background Blob Animation --- */
+      .animated-bg {
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+        overflow: hidden; 
+        /* Add a very slow horizontal slide to the container itself */
+        animation: subtle-slide 120s linear infinite alternate;
+      }
+
+      .blob {
+        position: absolute;
+        border-radius: 50%;
+        opacity: 0.7;
+        filter: blur(60px); 
+        animation: float ease-in-out infinite;
+        background: radial-gradient(circle, var(--animated-bg-color-1) 0%, transparent 70%);
+      }
+
+      .blob:nth-child(2) {
+        animation-delay: 2s;
+        animation-duration: 25s;
+        background: radial-gradient(circle, var(--animated-bg-color-2) 0%, transparent 70%);
+      }
+
+      @keyframes float {
+        0% { transform: translate(0, 0) scale(1); }
+        25% { transform: translate(10vw, 5vh) scale(1.1); }
+        50% { transform: translate(-5vw, 15vh) scale(0.9); }
+        75% { transform: translate(15vw, -10vh) scale(1.05); }
+        100% { transform: translate(0, 0) scale(1); }
+      }
+      
+      /* Keyframe for subtle horizontal slide across the hero container */
+      @keyframes subtle-slide {
+          from { transform: translateX(0); }
+          to { transform: translateX(-5%); }
+      }
+
+      /* --- Scroll Reveal Animation --- */
+      .scroll-reveal {
+          opacity: 0;
+          transform: translateY(20px);
+          transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+      }
+      .scroll-reveal.visible {
+          opacity: 1;
+          transform: translateY(0);
+      }
+
+      /* Glowing Divider */
+      .glowing-divider {
+          height: 1px;
+          background: linear-gradient(90deg, transparent, var(--primary), transparent);
+          box-shadow: var(--divider-glow);
+      }
+    </style>
+  </head>
+  <body class="bg-var-bg text-var-text flex flex-col min-h-screen transition-colors duration-500 font-sans">
+    
+    <nav class="fixed top-0 left-0 right-0 z-50 navbar-glass border-b border-var-border/50">
+      <div class="container mx-auto flex justify-between items-center px-6 md:px-10 py-4">
+        <a href="{{ url_for('index') }}" class="text-var-primary font-bold text-2xl tracking-tight">
+          Content <span class="text-var-accent">Agent</span>
+        </a>
+        <div class="hidden md:flex space-x-10 items-center text-sm font-medium">
+          <a href="{{ url_for('index') }}" class="text-var-text hover:text-var-primary transition-colors duration-300">Home</a>
+          <a href="{{ url_for('features') }}" class="text-var-text hover:text-var-primary transition-colors duration-300">Features</a>
+          <a href="{{ url_for('create') }}" class="text-var-text hover:text-var-primary transition-colors duration-300">Create</a>
+          <a href="{{ url_for('history') }}" class="text-var-text hover:text-var-primary transition-colors duration-300">History</a>
+          
+          <button
+            id="themeToggle"
+            class="p-2 rounded-full bg-var-card hover:bg-var-primary-600/20 border border-var-border text-var-primary transition-all duration-300"
+            title="Toggle Theme"
+          >
+            <span id="sunIcon" class="hidden">☀️</span>
+            <span id="moonIcon" class="">🌙</span>
+          </button>
+        </div>
+        
+        <div class="md:hidden flex items-center">
+          <button
+            id="themeToggleMobile"
+            class="p-2 rounded-full bg-var-card hover:bg-var-primary-600/20 border border-var-border text-var-primary mr-4 transition-all duration-300"
+            title="Toggle Theme"
+          >
+            <span id="sunIconMobile" class="hidden">☀️</span>
+            <span id="moonIconMobile" class="">🌙</span>
+          </button>
+          <button id="menuBtn" class="text-var-text focus:outline-none text-2xl">
+            ☰
+          </button>
+        </div>
+      </div>
+      <div id="mobileMenu" class="hidden md:hidden px-6 pb-4 space-y-2 bg-var-card/90">
+        <a href="{{ url_for('index') }}" class="block text-var-text hover:text-var-primary py-2 transition-colors duration-300">Home</a>
+        <a href="{{ url_for('features') }}" class="block text-var-text hover:text-var-primary py-2 transition-colors duration-300">Features</a>
+        <a href="{{ url_for('create') }}" class="block text-var-text hover:text-var-primary py-2 transition-colors duration-300">Create</a>
+        <a href="{{ url_for('history') }}" class="block text-var-text hover:text-var-primary py-2 transition-colors duration-300">History</a>
+      </div>
+    </nav>
+    
+    <section class="flex-1 pt-40 pb-28 bg-var-bg text-var-text relative overflow-hidden">
+      <div class="animated-bg">
+        <div class="blob w-[40rem] h-[40rem] top-1/4 left-1/4" style="animation-duration: 20s;"></div>
+        <div class="blob w-[35rem] h-[35rem] top-1/2 right-1/4" style="animation-duration: 25s; animation-delay: 5s;"></div>
+      </div>
+
+      <div class="container mx-auto px-6 md:px-10 text-center relative z-10 scroll-reveal">
+        <h1 class="text-5xl md:text-7xl font-extrabold mb-6 leading-tight">
+          <span
+            class="bg-title-gradient bg-clip-text text-transparent"
+            style="-webkit-background-clip: text; -webkit-text-fill-color: transparent;"
+          >
+            True Global Content Resonance
+          </span>
+        </h1>
+        <p class="text-xl md:text-2xl mb-12 text-var-muted max-w-4xl mx-auto">
+          Go beyond translation. Our AI localizes tone, humor, and cultural context to ensure your brand's message is **authentic** in any market.
+        </p>
+        <a
+          href="{{ url_for('create') }}"
+          class="inline-block bg-var-primary text-slate-900 px-10 py-4 rounded-lg font-bold uppercase tracking-wider btn-primary"
+        >
+          Start Localizing →
+        </a>
+      </div>
+    </section>
+
+    <div class="w-full h-1 glowing-divider mx-auto max-w-7xl opacity-50 scroll-reveal"></div>
+
+    <section class="py-24 container mx-auto px-6 md:px-10">
+      <h2 class="text-4xl font-bold text-center text-var-text mb-16 scroll-reveal">The Core Engine</h2>
+      <div class="grid gap-8 md:grid-cols-4">
+        {% for feature in [
+            ('🌍', 'Cultural Fidelity', 'Adapts tone and references for true market resonance.', 'Primary', 0.1),
+            ('💬', 'Multi-Lingual NLP', 'Supports 15+ complex language sets globally.', 'Accent', 0.3),
+            ('🤖', 'Adaptive LLM Core', 'Uses advanced models for nuanced and creative outputs.', 'Primary', 0.5),
+            ('🖼', 'Asset Synchronization', 'Contextually suggests or generates appropriate local media.', 'Accent', 0.7)
+        ] %}
+        <div
+          class="bg-var-card p-8 rounded-xl card-hover scroll-reveal" style="transition-delay: {{ feature[4] }}s;"
+        >
+          <span class="text-3xl block mb-4 {% if feature[3] == 'Primary' %}text-var-primary{% else %}text-var-accent{% endif %}">
+            {{ feature[0] }}
+          </span>
+          <h3 class="text-xl font-bold text-var-text mb-2">
+            {{ feature[1] }}
+          </h3>
+          <p class="text-var-muted text-sm">
+            {{ feature[2] }}
+          </p>
+        </div>
+        {% endfor %}
+      </div>
+    </section>
+
+    <section class="py-24 bg-var-card border-t border-b border-var-border/50">
+      <div class="container mx-auto px-6 md:px-10 grid md:grid-cols-2 gap-12 items-center">
+        <div class="scroll-reveal">
+          <h2 class="text-4xl font-bold text-var-text mb-10">Seamless Workflow</h2>
+          
+          <div class="space-y-8">
+            <div class="flex items-start space-x-4">
+              <span class="text-3xl font-extrabold text-var-primary">01</span>
+              <div>
+                <h3 class="text-xl font-bold text-var-text">Initial Brief</h3>
+                <p class="text-var-muted">Input your source content and specify the target locale (e.g., Brazil) and desired medium.</p>
+              </div>
+            </div>
+            <div class="flex items-start space-x-4">
+              <span class="text-3xl font-extrabold text-var-primary">02</span>
+              <div>
+                <h3 class="text-xl font-bold text-var-text">Contextual Processing</h3>
+                <p class="text-var-muted">Our agent runs cultural safety checks and adapts idioms, humor, and tone for genuine local appeal.</p>
+              </div>
+            </div>
+            <div class="flex items-start space-x-4">
+              <span class="text-3xl font-extrabold text-var-primary">03</span>
+              <div>
+                <h3 class="text-xl font-bold text-var-text">API-Ready Output</h3>
+                <p class="text-var-muted">Receive clean, structured **JSON or XML** content ready for instant deployment into your CMS.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="p-6 bg-var-bg rounded-xl border border-var-border shadow-2xl shadow-var-shadow/50 scroll-reveal" style="transition-delay: 0.3s;">
+          <p class="text-var-primary mb-4 text-sm font-semibold uppercase tracking-wider">Validated Output Snippet</p>
+          <pre class="json-container bg-var-bg/50 overflow-x-auto">
+{
+  <span class="json-key">"id"</span>: <span class="json-num">10834</span>,
+  <span class="json-key">"target_locale"</span>: <span class="json-str">"pt-BR"</span>,
+  <span class="json-key">"source_phrase"</span>: <span class="json-str">"A piece of cake!"</span>,
+  <span class="json-key">"localized_content"</span>: <span class="json-str">"Mamão com açúcar!"</span>,
+  <span class="json-key">"note"</span>: <span class="json-str">"Literal translation replaced with the Brazilian idiom for 'easy' (Papaya with sugar)."</span>
+}</pre>
+        </div>
+      </div>
+    </section>
+
+    <footer class="bg-var-bg py-10 mt-12 border-t border-var-border/50">
+      <div class="container mx-auto px-6 md:px-10 text-center text-var-muted text-sm scroll-reveal">
+        <p>A Product of Team Emerald. Localization perfected.</p>
+        <p class="mt-2">© 2025 Content Agent. All Rights Reserved.</p>
+      </div>
+    </footer>
+
+    <script>
+      // --- Scroll Reveal Logic ---
+      const scrollElements = document.querySelectorAll(".scroll-reveal");
+
+      const elementInView = (el, dividend = 1) => {
+        const elementTop = el.getBoundingClientRect().top;
+        return (
+          elementTop <=
+          (window.innerHeight || document.documentElement.clientHeight) / dividend
+        );
+      };
+
+      const displayScrollElement = (element) => {
+        element.classList.add("visible");
+      };
+
+      const hideScrollElement = (element) => {
+        element.classList.remove("visible");
+      };
+
+      const handleScrollAnimation = () => {
+        scrollElements.forEach((el) => {
+          if (elementInView(el, 1.25)) {
+            displayScrollElement(el);
+          } else {
+            // Optional: Hide element if scrolled back up (for re-reveal)
+            // hideScrollElement(el); 
+          }
+        });
+      };
+
+      window.addEventListener("scroll", handleScrollAnimation);
+      // Run on load to catch elements already in view
+      handleScrollAnimation(); 
+
+
+      // --- Mobile Menu Toggle ---
+      document.getElementById("menuBtn").addEventListener("click", () => {
+        document.getElementById("mobileMenu").classList.toggle("hidden");
+      });
+
+      // --- Theme Toggle Logic ---
+      const htmlEl = document.documentElement;
+      const themeToggle = document.getElementById("themeToggle");
+      const themeToggleMobile = document.getElementById("themeToggleMobile");
+
+      const sunIcon = document.getElementById("sunIcon");
+      const moonIcon = document.getElementById("moonIcon");
+      const sunIconMobile = document.getElementById("sunIconMobile");
+      const moonIconMobile = document.getElementById("moonIconMobile");
+
+      function updateThemeIcons(isLightMode) {
+        if (isLightMode) {
+          sunIcon.classList.remove('hidden');
+          moonIcon.classList.add('hidden');
+          sunIconMobile.classList.remove('hidden');
+          moonIconMobile.classList.add('hidden');
+        } else {
+          sunIcon.classList.add('hidden');
+          moonIcon.classList.remove('hidden');
+          sunIconMobile.classList.add('hidden');
+          moonIconMobile.classList.remove('hidden');
+        }
+      }
+
+      // Check for saved theme preference or default to dark
+      const isLightMode = localStorage.getItem('theme') === 'light';
+      if (isLightMode) {
+        htmlEl.classList.add('light');
+        htmlEl.classList.remove('dark');
+      }
+
+      updateThemeIcons(isLightMode);
+
+      function toggleTheme() {
+        const isCurrentlyLight = htmlEl.classList.contains('light');
+        if (isCurrentlyLight) {
+          htmlEl.classList.remove('light');
+          htmlEl.classList.add('dark');
+          localStorage.setItem('theme', 'dark');
+          updateThemeIcons(false);
+        } else {
+          htmlEl.classList.remove('dark');
+          htmlEl.classList.add('light');
+          localStorage.setItem('theme', 'light');
+          updateThemeIcons(true);
+        }
+      }
+
+      themeToggle.addEventListener('click', toggleTheme);
+      themeToggleMobile.addEventListener('click', toggleTheme);
+    </script>
+  </body>
+</html>
