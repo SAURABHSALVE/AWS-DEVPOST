@@ -161,6 +161,13 @@ import requests
 from flask import Flask, request, jsonify, render_template
 from flask_cors import CORS
 from dotenv import load_dotenv
+from datetime import datetime
+import uuid
+import logging
+
+# Configure logging
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
 
 # Load environment variables from .env file
 load_dotenv()
@@ -172,71 +179,149 @@ template_folder = os.path.join(project_root, 'templates')
 static_folder = os.path.join(project_root, 'static')
 
 app = Flask(__name__, template_folder=template_folder, static_folder=static_folder)
-CORS(app)  # Enable CORS for all routes
+CORS(app, resources={r"/*": {"origins": "*"}})  # Enable CORS for all routes and origins
 
 # Get the API Gateway URL from the .env file
 API_GATEWAY_URL = os.getenv("API_GATEWAY_URL")
 
+# In-memory history store (simulating a database)
+history_store = []
+
+# Log all incoming requests for debugging
+@app.before_request
+def log_request_info():
+    logger.info(f"Incoming request: {request.method} {request.path} from {request.remote_addr}")
+
 @app.route('/')
 def index():
     """Renders the main single-page HTML application."""
+    logger.info("Serving index.html")
     return render_template('index.html')
 
 @app.route('/generate-blog', methods=['POST'])
 def generate_blog():
-    """Handles blog generation, either by calling API Gateway or returning a mock response."""
+    """Handles blog generation by calling the API Gateway and stores the result in history."""
     data = request.get_json()
     if not data or not data.get("topic"):
+        logger.error("Missing 'topic' in request body")
         return jsonify({"error": "Missing 'topic' in request body"}), 400
+    if not data.get("language"):
+        logger.error("A language must be selected")
+        return jsonify({"error": "A language must be selected"}), 400
 
-    # Prepare the payload for the Lambda function or mock response
+    # Validate advanced settings
+    try:
+        tone_intensity = int(data.get("tone_intensity", 5))
+        if not (1 <= tone_intensity <= 10):
+            logger.error("Invalid tone intensity: %s", tone_intensity)
+            return jsonify({"error": "Tone intensity must be between 1 and 10"}), 400
+
+        word_count = int(data.get("word_count", 500))
+        if not (200 <= word_count <= 2000):
+            logger.error("Invalid word count: %s", word_count)
+            return jsonify({"error": "Word count must be between 200 and 2000"}), 400
+    except ValueError as e:
+        logger.error("Invalid numeric input: %s", str(e))
+        return jsonify({"error": "Tone intensity and word count must be valid numbers"}), 400
+
+    keywords = data.get("keywords", "").split(",") if data.get("keywords") else []
+    keywords = [k.strip() for k in keywords if k.strip()]  # Remove empty or whitespace-only keywords
+    if len(keywords) > 5:
+        logger.error("Too many keywords: %s", len(keywords))
+        return jsonify({"error": "Maximum 5 keywords allowed"}), 400
+
+    if not API_GATEWAY_URL:
+        logger.error("API Gateway URL not configured")
+        return jsonify({"error": "API Gateway URL not configured"}), 500
+
+    # Prepare the payload for the Lambda function
     payload = {
         "topic": data.get("topic"),
         "audience": data.get("audience", "general"),
         "tone": data.get("tone", "professional"),
-        "languages": [data.get("language", "en")]
+        "tone_intensity": tone_intensity,
+        "word_count": word_count,
+        "keywords": keywords,
+        "language": data.get("language", "en")
     }
-    print(f"Received request: {payload}")  # Debug log
+    logger.info("Received request: %s", payload)
 
-    # If API_GATEWAY_URL is set, forward the request to AWS API Gateway
-    if API_GATEWAY_URL:
-        try:
-            headers = {'Content-Type': 'application/json'}
-            response = requests.post(API_GATEWAY_URL, data=json.dumps(payload), headers=headers, timeout=60)
-            response.raise_for_status()  # Raise an exception for HTTP errors
-            api_response = response.json()
-            print(f"API Gateway response: {api_response}")  # Debug log
-            # Ensure the response has the expected structure
-            results = api_response.get("results", {})
-            if not results:
-                return jsonify({"error": "No results returned from API Gateway"}), 500
-            return jsonify({"results": results}), 200
-        except requests.exceptions.RequestException as e:
-            error_message = f"Error calling API Gateway: {str(e)}"
-            print(error_message)
-            return jsonify({"error": error_message}), 500
-    else:
-        # Return a mock response for local testing, matching AWS structure
-        lang = data.get("language", "en")
-        topic = data.get("topic", "test")
-        blog_id = f"{topic.replace(' ', '-')}-{lang}"
-        mock_content = (
-            f"Discover our revolutionary AI writing tool, designed to craft compelling content effortlessly. "
-            f"With advanced natural language processing, it adapts to your desired tone—{data.get('tone', 'professional')}—"
-            f"and creates engaging text for any audience, from {data.get('audience', 'general')} readers to niche markets. "
-            f"Perfect for blogs, marketing, and more, this tool streamlines your workflow and elevates your content game."
-        )
-        mock_response = {
-            "results": {
-                lang: {
-                    "blogId": f"{blog_id}-{lang}",
-                    "s3_key": f"{lang}/{blog_id}.html",
-                    "content": mock_content
-                }
-            }
+    # Forward the request to AWS API Gateway
+    try:
+        headers = {'Content-Type': 'application/json'}
+        response = requests.post(API_GATEWAY_URL, data=json.dumps(payload), headers=headers, timeout=60)
+        response.raise_for_status()  # Raise an exception for HTTP errors
+        api_response = response.json()
+        logger.info("API Gateway response: %s", api_response)
+
+        # Validate response structure
+        results = api_response.get("results", {})
+        if not results:
+            logger.error("No results returned from API Gateway")
+            return jsonify({"error": "No results returned from API Gateway"}), 500
+
+        lang = payload["language"]
+        if lang not in results:
+            logger.error("No content generated for language: %s", lang)
+            return jsonify({"error": f"No content generated for language: {lang}"}), 500
+        if not results[lang].get("content") and not results[lang].get("s3_key"):
+            logger.error("No content or S3 key provided for language: %s", lang)
+            return jsonify({"error": f"No content or S3 key provided for language: {lang}"}), 500
+
+        # Store the generated content in history_store
+        result = results[lang]
+        history_item = {
+            "id": str(uuid.uuid4()),  # Unique ID for the history item
+            "brief": payload["topic"][:50],  # Truncated to match frontend display
+            "language": lang,
+            "tone": payload["tone"],
+            "audience": payload["audience"],
+            "version": f"v{len([h for h in history_store if h['brief'] == payload['topic'][:50]]) + 1}.0",
+            "result_text": result.get("content", ""),
+            "summary_text": result.get("summary", "Summary not provided"),
+            "preview_text": result.get("content", "")[:100] + "..." if result.get("content") else "No preview available",
+            "quality_score": float(result.get("quality_score", 80.0)),  # Ensure float for JSON serialization
+            "created_at": datetime.utcnow().isoformat() + "Z"
         }
-        print(f"Mock response: {mock_response}")  # Debug log
-        return jsonify(mock_response), 200
+        history_store.append(history_item)
+        logger.info("Stored history item: %s", history_item)
+
+        response = jsonify({"results": results})
+        response.headers["X-Response-Source"] = "generate-blog"
+        return response, 200
+    except requests.exceptions.RequestException as e:
+        error_message = f"Error calling API Gateway: {str(e)}"
+        logger.error(error_message)
+        return jsonify({"error": error_message}), 500
+    except Exception as e:
+        error_message = f"Unexpected error in generate-blog: {str(e)}"
+        logger.error(error_message)
+        return jsonify({"error": error_message}), 500
+
+@app.route('/history', methods=['GET'])
+def get_history():
+    """Returns the list of stored history items."""
+    try:
+        # Ensure history_store is JSON-serializable
+        for item in history_store:
+            if not isinstance(item["quality_score"], (int, float)):
+                item["quality_score"] = float(item["quality_score"])
+            if not isinstance(item["created_at"], str):
+                item["created_at"] = item["created_at"].isoformat() + "Z"
+
+        logger.info("Returning %d history items", len(history_store))
+        response = jsonify(history_store)
+        response.headers["X-History-Count"] = len(history_store)
+        response.headers["X-Server-Time"] = datetime.utcnow().isoformat() + "Z"
+        response.headers["X-Response-Source"] = "history"
+        return response, 200
+    except Exception as e:
+        error_message = f"Error retrieving history: {str(e)}"
+        logger.error(error_message)
+        response = jsonify({"error": error_message})
+        response.headers["X-Error-Details"] = str(e)
+        response.headers["X-Response-Source"] = "history-error"
+        return response, 500
 
 if __name__ == '__main__':
     app.run(host="0.0.0.0", port=5000, debug=True)
