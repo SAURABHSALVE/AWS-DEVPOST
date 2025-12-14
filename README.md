@@ -96,16 +96,6 @@ https://devpost.com/software/multilingual-blog-generator
 - User authentication and saved history  
 - Deployment on cloud platforms (AWS / GCP)
 
----
-
-## 👩‍💻 Author
-
-**Anshika Singh**  
-B.Tech in Artificial Intelligence & Machine Learning  
-Passionate about AI-driven products, automation, and real-world problem solving
-
----
-
 ## 📄 License
 
 This project is open-source and available for learning and educational purposes.
