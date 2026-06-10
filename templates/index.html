@@ -65,15 +65,7 @@
         transform: translateY(-2px);
       }
       .light .navbar-glass { background-color: rgba(241, 245, 249, 0.7); }
-      .typewriter-cursor { 
-        display: inline-block; 
-        background-color: var(--primary); 
-        width: 2px; 
-        height: 1.2rem; 
-        animation: blink 1s infinite; 
-        vertical-align: middle;
-      }
-      @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+      
       .text-var-text { color: var(--text); }
       .text-var-muted { color: var(--muted); }
       .text-var-primary { color: var(--primary); }
@@ -122,195 +114,55 @@
       .bot-response-card { background: #111827; border-radius: 0.5rem; border: 1px solid var(--border); transition: transform 0.3s; }
       .bot-response-card:hover { transform: translateY(-4px); }
       .light .bot-response-card { background: #eef2ff; }
+      
       .lang-en { border-left: 4px solid #10b981; }
       .lang-es { border-left: 4px solid #f59e0b; }
       .lang-de { border-left: 4px solid #ef4444; }
       .lang-ja { border-left: 4px solid #3b82f6; }
-      .rendered-content h1 { 
-        font-size: 1.75rem; 
-        font-weight: 800; 
-        color: var(--primary); 
-        margin: 1rem 0 0.5rem 0; 
-      }
-      .rendered-content h2 { 
-        font-size: 1.25rem; 
-        font-weight: 700; 
-        color: var(--primary); 
-        margin: 1.5rem 0 0.75rem 0; 
-      }
-      .rendered-content p { 
-        margin: 0.75rem 0; 
-        line-height: 1.6; 
-      }
-      .rendered-content br { display: block; margin: 0.5rem 0; }
-      .rendered-content[contenteditable="true"]:focus {
-        outline: 2px solid var(--primary);
-        background: rgba(255, 255, 255, 0.05);
-      }
-      .progress-bar {
-        height: 4px;
-        background: var(--primary);
-        transition: width 0.3s ease;
-      }
-      .summary-box {
-        background: rgba(255, 255, 255, 0.05);
-        padding: 1rem;
-        border-radius: 0.5rem;
-        margin-bottom: 1rem;
-        transition: transform 0.3s;
-      }
-      .summary-box:hover {
-        transform: translateY(-2px);
-      }
-      .language-pill {
-        display: inline-block;
-        padding: 0.5rem 1rem;
-        margin: 0.25rem;
-        border-radius: 1rem;
-        background: rgba(255, 255, 255, 0.1);
-        border: 1px solid var(--border);
-        cursor: pointer;
-        transition: all 0.3s;
-      }
-      .language-pill:hover {
-        background: rgba(16, 185, 129, 0.2);
-        transform: scale(1.05);
-        border-color: var(--primary);
-      }
-      .language-pill.selected {
-        background: var(--primary);
-        color: #0c0a09;
-        border-color: var(--primary-600);
-      }
-      .slider {
-        -webkit-appearance: none;
-        width: 100%;
-        height: 6px;
-        background: rgba(255, 255, 255, 0.1);
-        border-radius: 3px;
-        outline: none;
-        transition: background 0.3s;
-      }
-      .slider:hover {
-        background: rgba(16, 185, 129, 0.3);
-      }
-      .slider::-webkit-slider-thumb {
-        -webkit-appearance: none;
-        width: 16px;
-        height: 16px;
-        border-radius: 50%;
-        background: var(--primary);
-        cursor: pointer;
-        box-shadow: 0 0 10px rgba(16, 185, 129, 0.5);
-        transition: transform 0.3s;
-      }
-      .slider::-webkit-slider-thumb:hover {
-        transform: scale(1.2);
-      }
-      .history-sidebar {
-        position: fixed;
-        top: 80px;
-        left: 0;
-        height: calc(100vh - 80px);
-        width: 320px;
-        background-color: var(--card);
-        backdrop-filter: blur(16px);
-        border-right: 1px solid var(--border);
-        transform: translateX(-100%);
-        transition: transform 0.3s ease-in-out;
-        z-index: 10;
-      }
-      .history-sidebar.open {
-        transform: translateX(0);
-      }
-      .history-sidebar-header {
-        padding: 1rem;
-        border-bottom: 1px solid var(--border);
-      }
-      .history-item {
-        padding: 0.75rem 1rem;
-        cursor: pointer;
-        transition: background 0.3s;
-      }
-      .history-item:hover {
-        background: rgba(16, 185, 129, 0.2);
-      }
-      .history-item.active {
-        background: var(--primary);
-        color: #0c0a09;
-      }
-      .toggle-history-btn {
-        transition: all 0.3s;
-      }
-      .toggle-history-btn:hover {
-        background-color: var(--primary-600);
-        transform: scale(1.05);
-      }
-      @media (max-width: 768px) {
-        .history-sidebar {
-          width: 100%;
-          max-width: 300px;
-        }
-      }
-      .inspire-card, .community-card {
-        cursor: pointer;
-        transition: transform 0.3s, box-shadow 0.3s;
-      }
-      .inspire-card:hover, .community-card:hover {
-        transform: translateY(-4px);
-        box-shadow: 0 12px 40px rgba(16, 185, 129, 0.3);
-      }
-      .community-form {
-        background: var(--card);
-        backdrop-filter: blur(16px);
-        border: 1px solid var(--border);
-      }
-      .fade-in {
-        animation: fadeIn 0.5s ease-in-out;
-      }
-      @keyframes fadeIn {
-        from { opacity: 0; }
-        to { opacity: 1; }
-      }
-      .history-loading {
-        text-align: center;
-        padding: 1rem;
-        color: var(--muted);
-      }
-      /* --- NEW AUTH STYLES --- */
-      .auth-container {
-        max-width: 450px;
-        width: 100%;
-      }
-      .auth-input {
-        background-color: rgba(0,0,0,0.2);
-        color: var(--text);
-        border: 1px solid var(--border);
-      }
-      .auth-input:focus {
-        background-color: rgba(0,0,0,0.3);
-        outline: none;
-        border-color: var(--primary);
-        box-shadow: 0 0 0 2px var(--primary);
-      }
-      .auth-toggle-btn {
-        color: var(--primary);
-        cursor: pointer;
-      }
-      .auth-toggle-btn:hover {
-        text-decoration: underline;
-      }
-      .auth-error {
-        color: #ef4444; /* red-500 */
-        font-size: 0.875rem;
-        margin-top: 0.5rem;
-        display: none; /* Hidden by default */
-      }
+      
+      .rendered-content h1 { font-size: 1.75rem; font-weight: 800; color: var(--primary); margin: 1rem 0 0.5rem 0; }
+      .rendered-content h2 { font-size: 1.25rem; font-weight: 700; color: var(--primary); margin: 1.5rem 0 0.75rem 0; }
+      .rendered-content p { margin: 0.75rem 0; line-height: 1.6; }
+      .rendered-content[contenteditable="true"]:focus { outline: 2px solid var(--primary); background: rgba(255, 255, 255, 0.05); }
+      
+      .progress-bar { height: 4px; background: var(--primary); transition: width 0.3s ease; }
+      .summary-box { background: rgba(255, 255, 255, 0.05); padding: 1rem; border-radius: 0.5rem; margin-bottom: 1rem; transition: transform 0.3s; }
+      .summary-box:hover { transform: translateY(-2px); }
+      
+      .language-pill { display: inline-block; padding: 0.5rem 1rem; margin: 0.25rem; border-radius: 1rem; background: rgba(255, 255, 255, 0.1); border: 1px solid var(--border); cursor: pointer; transition: all 0.3s; }
+      .language-pill:hover { background: rgba(16, 185, 129, 0.2); transform: scale(1.05); border-color: var(--primary); }
+      .language-pill.selected { background: var(--primary); color: #0c0a09; border-color: var(--primary-600); }
+      
+      .slider { -webkit-appearance: none; width: 100%; height: 6px; background: rgba(255, 255, 255, 0.1); border-radius: 3px; outline: none; transition: background 0.3s; }
+      .slider:hover { background: rgba(16, 185, 129, 0.3); }
+      .slider::-webkit-slider-thumb { -webkit-appearance: none; width: 16px; height: 16px; border-radius: 50%; background: var(--primary); cursor: pointer; box-shadow: 0 0 10px rgba(16, 185, 129, 0.5); transition: transform 0.3s; }
+      .slider::-webkit-slider-thumb:hover { transform: scale(1.2); }
+      
+      .history-sidebar { position: fixed; top: 80px; left: 0; height: calc(100vh - 80px); width: 320px; background-color: var(--card); backdrop-filter: blur(16px); border-right: 1px solid var(--border); transform: translateX(-100%); transition: transform 0.3s ease-in-out; z-index: 10; }
+      .history-sidebar.open { transform: translateX(0); }
+      .history-sidebar-header { padding: 1rem; border-bottom: 1px solid var(--border); }
+      .history-item { padding: 0.75rem 1rem; cursor: pointer; transition: background 0.3s; border-bottom: 1px solid var(--border); }
+      .history-item:hover { background: rgba(16, 185, 129, 0.15); }
+      
+      .inspire-card, .community-card { cursor: pointer; transition: transform 0.3s, box-shadow 0.3s; }
+      .inspire-card:hover, .community-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(16, 185, 129, 0.3); }
+      .community-form { background: var(--card); backdrop-filter: blur(16px); border: 1px solid var(--border); }
+      .fade-in { animation: fadeIn 0.5s ease-in-out; }
+      @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+      .history-loading { text-align: center; padding: 1rem; color: var(--muted); }
+      
+      .auth-container { max-width: 450px; width: 100%; }
+      .auth-input { background-color: rgba(0,0,0,0.2); color: var(--text); border: 1px solid var(--border); }
+      .auth-input:focus { background-color: rgba(0,0,0,0.3); outline: none; border-color: var(--primary); box-shadow: 0 0 0 2px var(--primary); }
+      .auth-toggle-btn { color: var(--primary); cursor: pointer; }
+      .auth-toggle-btn:hover { text-decoration: underline; }
+      .auth-error { color: #ef4444; font-size: 0.875rem; margin-top: 0.5rem; display: none; }
     </style>
   </head>
   <body class="text-var-text flex flex-col min-h-screen">
     <canvas id="bg-canvas"></canvas>
-    <div class="main-content">
+    
+    <div class="main-content flex flex-col min-h-screen">
       <nav class="fixed top-0 left-0 right-0 z-50 navbar-glass border-b border-[rgba(55,65,81,0.5)]">
         <div class="container mx-auto flex justify-between items-center px-6 md:px-10 py-4">
           <a href="#" data-page="home" class="nav-link text-var-primary font-bold text-2xl tracking-tight">Content <span class="text-var-accent">Forge</span></a>
@@ -318,7 +170,6 @@
             <a href="#" data-page="home" class="nav-link text-var-text hover:text-var-primary transition-colors duration-300">Home</a>
             <a href="#" data-page="inspire" class="nav-link text-var-text hover:text-var-primary transition-colors duration-300">Inspire</a>
             <a href="#" data-page="community" class="nav-link text-var-text hover:text-var-primary transition-colors duration-300">Community</a>
-            
             <a href="#" data-page="create" class="nav-link text-var-text hover:text-var-primary transition-colors duration-300">Create</a>
             
             <div id="user-nav-display" class="flex items-center space-x-2 text-var-muted hidden">
@@ -331,41 +182,42 @@
             <button id="auth-nav-btn" class="nav-link text-var-text hover:text-var-primary transition-colors duration-300">Login / Sign Up</button>
             <button id="logout-nav-btn" class="nav-link text-var-text hover:text-var-primary transition-colors duration-300 hidden">Logout</button>
             <button id="themeToggle" class="p-2 rounded-full text-var-primary transition-all duration-300" title="Toggle Theme">
-              <span id="sunIcon" class="hidden">☀️</span><span id="moonIcon" class="">🌙</span>
+              <span id="sunIcon" class="hidden">☀️</span><span id="moonIcon">🌙</span>
             </button>
           </div>
-          <div class="md:hidden flex items-center"><button id="menuBtn" class="text-var-text focus:outline-none text-2xl">☰</button></div>
+          <div class="md:hidden flex items-center">
+            <button id="menuBtn" class="text-var-text focus:outline-none text-2xl">☰</button>
+          </div>
         </div>
+        
         <div id="mobileMenu" class="hidden md:hidden px-6 pb-4 space-y-2 glass-card border-t border-[rgba(55,65,81,0.5)]">
           <a href="#" data-page="home" class="nav-link-mobile block py-2">Home</a>
           <a href="#" data-page="inspire" class="nav-link-mobile block py-2">Inspire</a>
           <a href="#" data-page="community" class="nav-link-mobile block py-2">Community</a>
-           
-           <a href="#" data-page="create" class="nav-link-mobile block py-2">Create</a>
+          <a href="#" data-page="create" class="nav-link-mobile block py-2">Create</a>
           
           <div id="user-nav-display-mobile" class="flex items-center space-x-2 text-var-muted py-2 hidden">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-             <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-6-3a2 2 0 11-4 0 2 2 0 014 0zM12 12a4 4 0 00-4 4h8a4 4 0 00-4-4z" clip-rule="evenodd" />
-           </svg>
-           <span id="user-nav-username-mobile" class="text-sm"></span>
-         </div>
-
+              <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-6-3a2 2 0 11-4 0 2 2 0 014 0zM12 12a4 4 0 00-4 4h8a4 4 0 00-4-4z" clip-rule="evenodd" />
+            </svg>
+            <span id="user-nav-username-mobile" class="text-sm"></span>
+          </div>
           <button id="auth-nav-btn-mobile" class="nav-link-mobile block py-2 text-left w-full">Login / Sign Up</button>
           <button id="logout-nav-btn-mobile" class="nav-link-mobile block py-2 text-left w-full hidden">Logout</button>
-           </div>
+        </div>
       </nav>
-      <main>
+
+      <main class="flex-grow">
         <div id="page-home" class="page-content">
           <section class="min-h-screen flex items-center justify-center text-center px-6">
             <div>
               <h1 class="text-5xl md:text-8xl font-black mb-6 leading-tight text-transparent bg-clip-text bg-gradient-to-r from-white via-emerald-200 to-emerald-400">The Digital Content Forge</h1>
               <p class="text-xl md:text-2xl mb-12 text-var-muted max-w-4xl mx-auto">Craft culturally resonant content with advanced AI, tailored for your audience.</p>
-              
               <div class="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-6">
-                <a href="#" data-page="create" class="nav-link inline-block bg-var-primary text-slate-900 px-10 py-4 rounded-lg font-bold uppercase tracking-wider btn-primary">Enter The Forge →</a>
-                <a href="#" data-page="create" class="nav-link inline-block bg-gray-600 text-white px-10 py-4 rounded-lg font-bold uppercase tracking-wider btn-primary" style="--primary: #4b5563; --primary-600: #374151;">Get Started</a>
+                <a href="#" data-page="create" class="inline-block bg-var-primary text-slate-900 px-10 py-4 rounded-lg font-bold uppercase tracking-wider btn-primary">Enter The Forge →</a>
+                <a href="#" data-page="create" class="inline-block bg-gray-600 text-white px-10 py-4 rounded-lg font-bold uppercase tracking-wider btn-primary" style="--primary: #4b5563; --primary-600: #374151;">Get Started</a>
               </div>
-              </div>
+            </div>
           </section>
         </div>
 
@@ -424,107 +276,58 @@
 
         <div id="page-create" class="page-content hidden">
           <section class="min-h-screen flex flex-col justify-between pt-20">
-            <div class="container mx-auto px-6 w-full max-w-5xl flex-grow flex">
+            <div class="container mx-auto px-6 w-full max-w-5xl flex-grow flex relative">
               <div id="history-sidebar" class="history-sidebar">
                 <div class="history-sidebar-header flex justify-between items-center">
                   <h2 class="text-xl font-bold text-var-text">Content Archives</h2>
                   <button id="toggle-history" class="toggle-history-btn bg-var-primary text-slate-900 px-3 py-1 rounded-lg text-sm btn-primary">Close</button>
                 </div>
-                <div id="history-list" class="overflow-y-auto h-full p-4">
+                <div id="history-list" class="overflow-y-auto h-[calc(100%-60px)] p-4">
                   <div id="history-empty" class="text-center hidden">
-                    <p class="text-var-muted">The Archives are currently empty. Forged content will appear here.</p>
+                    <p class="text-var-muted">The Archives are empty. Forged content appears here.</p>
                   </div>
                   <div id="history-login-prompt" class="text-center p-4 hidden">
-                    <p class="text-var-muted">Please log in to view and save your content archives.</p>
+                    <p class="text-var-muted">Please log in to save your history data files.</p>
                     <button id="history-login-btn" class="mt-4 bg-var-primary text-slate-900 px-4 py-2 rounded-lg text-sm btn-primary">Login</button>
                   </div>
-                  <div id="history-loading" class="history-loading">Loading history...</div>
-                  <div class="history-item rounded-lg">
-                    <div>
-                      <p class="text-sm font-semibold text-var-text mb-1">AI in marketing strategies</p>
-                      <div class="mb-1">
-                        <span class="inline-block bg-gray-700 text-gray-300 text-xs font-semibold mr-1 px-2 py-0.5 rounded-full">en</span>
-                        <span class="inline-block bg-gray-700 text-gray-300 text-xs font-semibold mr-1 px-2 py-0.5 rounded-full">professional</span>
-                        <span class="inline-block bg-gray-700 text-gray-300 text-xs font-semibold px-2 py-0.5 rounded-full">v1.0</span>
-                      </div>
-                      <div class="text-right mt-2">
-                        <button class="text-xs text-var-primary hover:underline view-content" data-content="AI%20in%20Marketing%3Ch1%3EAI%20in%20Marketing%3C%2Fh1%3E%3Cp%3EArtificial%20intelligence%20is%20revolutionizing%20marketing...%3C%2Fp%3E" data-blogid="1" data-language="en">View</button>
-                        <button class="text-xs text-var-primary hover:underline compare-versions ml-2" data-brief="AI in marketing strategies">Compare</button>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="history-item rounded-lg">
-                    <div>
-                      <p class="text-sm font-semibold text-var-text mb-1">Sustainable business practices</p>
-                      <div class="mb-1">
-                        <span class="inline-block bg-gray-700 text-gray-300 text-xs font-semibold mr-1 px-2 py-0.5 rounded-full">es</span>
-                        <span class="inline-block bg-gray-700 text-gray-300 text-xs font-semibold mr-1 px-2 py-0.5 rounded-full">friendly</span>
-                        <span class="inline-block bg-gray-700 text-gray-300 text-xs font-semibold px-2 py-0.5 rounded-full">v1.1</span>
-                      </div>
-                      <div class="text-right mt-2">
-                        <button class="text-xs text-var-primary hover:underline view-content" data-content="Pr%C3%A1cticas%20Empresariales%20Sostenibles%3Ch1%3EPr%C3%A1cticas%20Empresariales%20Sostenibles%3C%2Fh1%3E%3Cp%3ELas%20empresas%20adoptan%20estrategias%20verdes...%3C%2Fp%3E" data-blogid="2" data-language="es">View</button>
-                        <button class="text-xs text-var-primary hover:underline compare-versions ml-2" data-brief="Sustainable business practices">Compare</button>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="history-item rounded-lg">
-                    <div>
-                      <p class="text-sm font-semibold text-var-text mb-1">Remote work culture trends</p>
-                      <div class="mb-1">
-                        <span class="inline-block bg-gray-700 text-gray-300 text-xs font-semibold mr-1 px-2 py-0.5 rounded-full">en</span>
-                        <span class="inline-block bg-gray-700 text-gray-300 text-xs font-semibold mr-1 px-2 py-0.5 rounded-full">casual</span>
-                        <span class="inline-block bg-gray-700 text-gray-300 text-xs font-semibold px-2 py-0.5 rounded-full">v1.2</span>
-                      </div>
-                      <div class="text-right mt-2">
-                        <button class="text-xs text-var-primary hover:underline view-content" data-content="Remote%20Work%20Trends%3Ch1%3ERemote%20Work%20Trends%3C%2Fh1%3E%3Cp%3ERemote%20work%20is%20reshaping%20workplace%20culture...%3C%2Fp%3E" data-blogid="3" data-language="en">View</button>
-                        <button class="text-xs text-var-primary hover:underline compare-versions ml-2" data-brief="Remote work culture trends">Compare</button>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="history-item rounded-lg">
-                    <div>
-                      <p class="text-sm font-semibold text-var-text mb-1">Social media branding tips</p>
-                      <div class="mb-1">
-                        <span class="inline-block bg-gray-700 text-gray-300 text-xs font-semibold mr-1 px-2 py-0.5 rounded-full">ja</span>
-                        <span class="inline-block bg-gray-700 text-gray-300 text-xs font-semibold mr-1 px-2 py-0.5 rounded-full">professional</span>
-                        <span class="inline-block bg-gray-700 text-gray-300 text-xs font-semibold px-2 py-0.5 rounded-full">v1.0</span>
-                      </div>
-                      <div class="text-right mt-2">
-                        <button class="text-xs text-var-primary hover:underline view-content" data-content="%E3%82%BD%E3%83%BC%E3%82%B7%E3%83%A3%E3%83%AB%E3%83%A1%E3%83%87%E3%82%A3%E3%82%A2%E3%83%96%E3%83%A9%E3%83%B3%E3%83%87%E3%82%A3%E3%83%B3%E3%82%B0%3Ch1%3E%E3%82%BD%E3%83%BC%E3%82%B7%E3%83%A3%E3%83%AB%E3%83%A1%E3%83%87%E3%82%A3%E3%82%A2%E3%83%96%E3%83%A9%E3%83%B3%E3%83%87%E3%82%A3%E3%83%B3%E3%82%B0%3C%2Fh1%3E%3Cp%3E%E3%82%BD%E3%83%BC%E3%82%B7%E3%83%A3%E3%83%AB%E3%83%81%E3%83%A3%E3%83%A8%E3%83%AB%E3%81%A7%E3%83%96%E3%83%A9%E3%83%B3%E3%83%89%E3%82%92%E6%A7%8B%E7%AF%89...%3C%2Fp%3E" data-blogid="4" data-language="ja">View</button>
-                        <button class="text-xs text-var-primary hover:underline compare-versions ml-2" data-brief="Social media branding tips">Compare</button>
-                      </div>
-                    </div>
-                  </div>
+                  <div id="history-loading" class="history-loading hidden">Loading history records...</div>
                 </div>
               </div>
-              <div class="flex-grow flex flex-col">
-                <div class="flex justify-between items-center mb-4">
-                  <h1 class="text-4xl font-extrabold text-var-text pt-8">📝 Forge New Content</h1>
-                  <button id="toggle-history-open" class="toggle-history-btn bg-var-primary text-slate-900 px-4 py-2 rounded-lg font-semibold text-sm btn-primary md:hidden">📜 History</button>
+
+              <div class="flex-grow flex flex-col w-full">
+                <div class="flex justify-between items-center mb-4 border-b border-white/10 pb-2">
+                  <h1 class="text-4xl font-extrabold text-var-text pt-4">📝 Forge New Content</h1>
+                  <button id="toggle-history-open" class="toggle-history-btn bg-var-primary text-slate-900 px-4 py-2 rounded-lg font-semibold text-sm btn-primary">📜 History Archives</button>
                 </div>
                 <div id="chat-history" class="chat-container flex-grow p-4 flex flex-col space-y-4">
-                  <div class="bot-message chat-message fade-in"><p class="p-2">Welcome to the Forge! Describe the content you need. Customize settings below.</p></div>
+                  <div class="bot-message chat-message fade-in">
+                    <p class="p-2">Welcome to the digital forge workspace. Set engine properties down below to begin context assembly.</p>
+                  </div>
                 </div>
               </div>
             </div>
+
             <div class="chat-input-area p-4 w-full">
               <div class="container mx-auto max-w-4xl">
                 <form id="create-form" class="glass-card p-6 rounded-xl space-y-6">
                   <div class="flex items-start space-x-4">
                     <div class="w-full">
-                      <textarea name="topic" rows="1" class="w-full rounded-lg px-4 py-3 bg-black/20 text-white border border-gray-600/50 focus:outline-none focus:ring-2 focus:ring-var-primary transition resize-none" placeholder="Enter your English brief or source text..."></textarea>
+                      <textarea name="topic" rows="1" class="w-full rounded-lg px-4 py-3 bg-black/20 text-white border border-gray-600/50 focus:outline-none focus:ring-2 focus:ring-var-primary transition resize-none" placeholder="Enter topic specifications or raw engineering text context..."></textarea>
                       <div class="flex justify-between text-xs mt-1">
                         <p id="topic-error" class="text-red-400 hidden"></p>
                         <p id="word-count" class="text-var-muted">0 words</p>
                       </div>
                     </div>
-                    <button type="submit" id="submit-button" class="bg-var-primary text-slate-900 p-3 rounded-lg btn-primary flex-shrink-0" title="Forge Content"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 20 20" fill="currentColor"><path d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z" /></svg></button>
+                    <button type="submit" id="submit-button" class="bg-var-primary text-slate-900 p-3 rounded-lg btn-primary flex-shrink-0" title="Forge Content">
+                      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 20 20" fill="currentColor"><path d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z" /></svg>
+                    </button>
                   </div>
+
                   <details open>
-                    <summary class="cursor-pointer text-var-muted text-sm font-semibold">Advanced Settings</summary>
+                    <summary class="cursor-pointer text-var-muted text-sm font-semibold selection:bg-transparent">Advanced Configuration Modules</summary>
                     <div class="pt-4 space-y-6">
                       <div>
-                        <label class="block font-semibold mb-2 text-sm text-var-muted">Target Language</label>
+                        <label class="block font-semibold mb-2 text-sm text-var-muted">Target Localization Output</label>
                         <div id="language-select" class="flex flex-wrap gap-2">
                           <div class="language-pill selected" data-value="en">English (en)</div>
                           <div class="language-pill" data-value="de">German (de)</div>
@@ -532,39 +335,42 @@
                           <div class="language-pill" data-value="ja">Japanese (ja)</div>
                         </div>
                         <input type="hidden" name="language" id="language-input" value="en">
-                        <p id="language-error" class="text-red-400 text-xs mt-1 hidden">Please select a language.</p>
+                        <p id="language-error" class="text-red-400 text-xs mt-1 hidden">Select target context language variant.</p>
+                      </div>
+                      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                          <label class="block font-semibold mb-2 text-sm text-var-muted">Tone Engine Profiling</label>
+                          <select name="tone" class="w-full rounded-lg px-4 py-2 bg-black/20 text-white border border-gray-600/50 focus:outline-none focus:ring-1 focus:ring-var-primary transition text-sm">
+                            <option value="professional">Professional Core</option>
+                            <option value="friendly">Friendly Editorial</option>
+                            <option value="casual">Casual Narrative</option>
+                          </select>
+                        </div>
+                        <div>
+                          <label class="block font-semibold mb-2 text-sm text-var-muted">Audience Segment Vector</label>
+                          <select name="audience" class="w-full rounded-lg px-4 py-2 bg-black/20 text-white border border-gray-600/50 focus:outline-none focus:ring-1 focus:ring-var-primary transition text-sm">
+                            <option value="general">General Public</option>
+                            <option value="technical">Technical Developers</option>
+                            <option value="business">Enterprise Operators</option>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                          <label class="block font-semibold mb-2 text-sm text-var-muted">Tone Frequency Magnitude (1-10)</label>
+                          <input type="range" name="tone_intensity" min="1" max="10" value="5" class="slider">
+                          <p class="text-xs text-var-muted mt-1">Magnitude: <span id="tone-intensity-value">5</span> Vector Units</p>
+                        </div>
+                        <div>
+                          <label class="block font-semibold mb-2 text-sm text-var-muted">Token Allocation Matrix (Length)</label>
+                          <input type="range" name="word_count" min="200" max="2000" step="100" value="500" class="slider">
+                          <p class="text-xs text-var-muted mt-1">Matrix Boundary: ~<span id="word-count-value">500</span> Token Targets</p>
+                        </div>
                       </div>
                       <div>
-                        <label class="block font-semibold mb-2 text-sm text-var-muted">Desired Tone</label>
-                        <select name="tone" class="w-full rounded-lg px-4 py-2 bg-black/20 text-white border border-gray-600/50 focus:outline-none focus:ring-1 focus:ring-var-primary transition text-sm">
-                          <option value="professional">Professional</option>
-                          <option value="friendly">Friendly</option>
-                          <option value="casual">Casual</option>
-                        </select>
-                      </div>
-                      <div>
-                        <label class="block font-semibold mb-2 text-sm text-var-muted">Tone Intensity (1-10)</label>
-                        <input type="range" name="tone_intensity" min="1" max="10" value="5" class="slider">
-                        <p class="text-xs text-var-muted mt-1">Current: <span id="tone-intensity-value">5</span></p>
-                      </div>
-                      <div>
-                        <label class="block font-semibold mb-2 text-sm text-var-muted">Target Audience</label>
-                        <select name="audience" class="w-full rounded-lg px-4 py-2 bg-black/20 text-white border border-gray-600/50 focus:outline-none focus:ring-1 focus:ring-var-primary transition text-sm">
-                          <option value="general">General</option>
-                          <option value="technical">Technical</option>
-                          <option value="business">Business</option>
-                        </select>
-                      </div>
-                      <div>
-                        <label class="block font-semibold mb-2 text-sm text-var-muted">Content Length (Words)</label>
-                        <input type="range" name="word_count" min="200" max="2000" step="100" value="500" class="slider">
-                        <p class="text-xs text-var-muted mt-1">Current: <span id="word-count-value">500</span> words</p>
-                      </div>
-                      <div>
-                        <label class="block font-semibold mb-2 text-sm text-var-muted">Emphasize Keywords (comma-separated, max 5)</label>
-                        <input type="text" name="keywords" class="w-full rounded-lg px-4 py-2 bg-black/20 text-white border border-gray-600/50 focus:outline-none focus:ring-1 focus:ring-var-primary transition text-sm" placeholder="e.g., AI, productivity, technology">
-                        <p id="keywords-error" class="text-red-400 text-xs mt-1 hidden">Maximum 5 non-empty keywords allowed.</p>
-                        <p class="text-xs text-var-muted mt-1">Enter up to 5 keywords to prioritize in content.</p>
+                        <label class="block font-semibold mb-2 text-sm text-var-muted">Incorporate Keywords Matrix (Comma Delimited)</label>
+                        <input type="text" name="keywords" class="w-full rounded-lg px-4 py-2 bg-black/20 text-white border border-gray-600/50 focus:outline-none focus:ring-1 focus:ring-var-primary transition text-sm" placeholder="e.g., Artificial Intelligence, Matrix, Rust Lang Core">
+                        <p id="keywords-error" class="text-red-400 text-xs mt-1 hidden">Array structure limit cap at 5 terms.</p>
                       </div>
                     </div>
                   </details>
@@ -587,10 +393,10 @@
                   <button class="mt-4 bg-var-primary text-slate-900 px-4 py-2 rounded-lg text-sm btn-primary use-topic" data-topic="The Future of AI in Content Creation">Use This Topic</button>
                 </div>
                 <div class="inspire-card glass-card p-6 rounded-xl text-left">
-                  <h3 class="text-xl font-bold mb-2">Sustainable Business Practices in 2025</h3>
+                  <h3 class="text-xl font-bold mb-2">Sustainable Business Practices in 2026</h3>
                   <p class="text-var-muted text-sm mb-4">Discuss eco-friendly strategies for modern businesses.</p>
                   <p class="text-xs text-var-muted">Keywords: sustainability, green business, corporate responsibility</p>
-                  <button class="mt-4 bg-var-primary text-slate-900 px-4 py-2 rounded-lg text-sm btn-primary use-topic" data-topic="Sustainable Business Practices in 2025">Use This Topic</button>
+                  <button class="mt-4 bg-var-primary text-slate-900 px-4 py-2 rounded-lg text-sm btn-primary use-topic" data-topic="Sustainable Business Practices in 2026">Use This Topic</button>
                 </div>
                 <div class="inspire-card glass-card p-6 rounded-xl text-left">
                   <h3 class="text-xl font-bold mb-2">The Rise of Remote Work Culture</h3>
@@ -612,8 +418,9 @@
         <div id="page-community" class="page-content hidden">
           <section class="min-h-screen flex flex-col items-center justify-center px-6 py-24">
             <div class="container mx-auto">
-              <h1 class="text-4xl md:text-5xl font-extrabold mb-4 text-var-text">Community Creations</h1>
+              <h1 class="text-4xl md:text-5xl font-extrabold mb-4 text-var-text text-center">Community Creations</h1>
               <p class="text-lg text-var-muted mb-12 max-w-3xl mx-auto text-center">Share your forged content and explore creations from others.</p>
+              
               <div class="community-form glass-card p-6 rounded-xl mb-12">
                 <h2 class="text-xl font-bold mb-4 text-var-text">Share Your Content</h2>
                 <form id="community-post-form" class="space-y-4">
@@ -636,34 +443,21 @@
                   <p id="post-success" class="text-green-400 text-sm mt-2 hidden">Successfully shared to the community!</p>
                 </form>
               </div>
+
               <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <div class="community-card glass-card p-6 rounded-xl text-left">
                   <h3 class="text-xl font-bold mb-2">AI-Driven Marketing Strategies</h3>
                   <p class="text-var-muted text-sm mb-4">A blog post exploring how AI can enhance digital marketing campaigns.</p>
                   <p class="text-xs text-var-muted mb-2">By: Jane Doe | Posted: Oct 15, 2025</p>
                   <p class="text-xs text-var-muted">Tags: AI, marketing, digital strategy</p>
-                  <button class="mt-4 text-xs text-var-primary hover:underline view-community-post" data-content="This is a sample AI-driven marketing post...">View Post</button>
+                  <button class="mt-4 text-xs text-var-primary hover:underline view-community-post" data-title="AI-Driven Marketing Strategies" data-content="This is a sample AI-driven marketing post detailing automated targeting protocols mapping modern consumer metrics.">View Post</button>
                 </div>
                 <div class="community-card glass-card p-6 rounded-xl text-left">
                   <h3 class="text-xl font-bold mb-2">Sustainable Tech Innovations</h3>
                   <p class="text-var-muted text-sm mb-4">An article on eco-friendly technologies shaping the future.</p>
                   <p class="text-xs text-var-muted mb-2">By: John Smith | Posted: Oct 14, 2025</p>
                   <p class="text-xs text-var-muted">Tags: sustainability, technology, innovation</p>
-                  <button class="mt-4 text-xs text-var-primary hover:underline view-community-post" data-content="This is a sample sustainability post...">View Post</button>
-                </div>
-                <div class="community-card glass-card p-6 rounded-xl text-left">
-                  <h3 class="text-xl font-bold mb-2">The Evolution of Remote Work</h3>
-                  <p class="text-var-muted text-sm mb-4">Insights on how remote work is transforming workplaces.</p>
-                  <p class="text-xs text-var-muted mb-2">By: Alice Brown | Posted: Oct 13, 2025</p>
-                  <p class="text-xs text-var-muted">Tags: remote work, productivity, trends</p>
-                  <button class="mt-4 text-xs text-var-primary hover:underline view-community-post" data-content="This is a sample remote work post...">View Post</button>
-                </div>
-                <div class="community-card glass-card p-6 rounded-xl text-left">
-                  <h3 class="text-xl font-bold mb-2">Social Media Branding Tips</h3>
-                  <p class="text-var-muted text-sm mb-4">Strategies for building a strong brand on social platforms.</p>
-                  <p class="text-xs text-var-muted mb-2">By: Bob Wilson | Posted: Oct 12, 2025</p>
-                  <p class="text-xs text-var-muted">Tags: social media, branding, engagement</p>
-                  <button class="mt-4 text-xs text-var-primary hover:underline view-community-post" data-content="This is a sample social media post...">View Post</button>
+                  <button class="mt-4 text-xs text-var-primary hover:underline view-community-post" data-title="Sustainable Tech Innovations" data-content="This is a sample sustainability post evaluating global power transformations inside low footprint datacenter footprints.">View Post</button>
                 </div>
               </div>
             </div>
@@ -671,15 +465,18 @@
         </div>
       </main>
     </div>
+
     <script>
-    // --- AUTH STATE ---
-    let isLoggedIn = false;
+    // --- GLOBAL VARIABLE MATRIX CONTROL ---
+    let appAuthTokenState = false; 
     let currentUsername = '';
     let trialAvailable = true;
+    let allHistoryItems = [];
 
-    // 3D Scene Setup
+    // --- THREE.JS FLUID VECTOR GRAPHICS ENGINE ---
     let scene, camera, renderer, particles, centralLight;
     const mouse = new THREE.Vector2();
+
     function init3D() {
       scene = new THREE.Scene();
       scene.fog = new THREE.FogExp2(0x0c0a09, 0.05);
@@ -688,8 +485,10 @@
       const canvas = document.getElementById('bg-canvas');
       renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: true, alpha: true });
       renderer.setSize(window.innerWidth, window.innerHeight);
+      
       centralLight = new THREE.PointLight(0x34d399, 2, 50);
       scene.add(centralLight);
+      
       const particleCount = 7000;
       const particleGeometry = new THREE.BufferGeometry();
       const positions = new Float32Array(particleCount * 3);
@@ -699,13 +498,15 @@
         positions[i*3+2] = (Math.random() - 0.5) * 60;
       }
       particleGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-      const particleMaterial = new THREE.PointsMaterial({ size: 0.02, vertexColors: true, transparent: true, opacity: 0.8 });
+      const particleMaterial = new THREE.PointsMaterial({ size: 0.02, transparent: true, opacity: 0.8 });
       particles = new THREE.Points(particleGeometry, particleMaterial);
       scene.add(particles);
+      
       window.addEventListener('resize', onWindowResize, false);
       document.addEventListener('mousemove', onMouseMove, false);
       animate();
     }
+
     function animate() {
       requestAnimationFrame(animate);
       const time = Date.now() * 0.0005;
@@ -716,34 +517,32 @@
       camera.lookAt(scene.position);
       renderer.render(scene, camera);
     }
+
     function onWindowResize() {
       camera.aspect = window.innerWidth / window.innerHeight;
       camera.updateProjectionMatrix();
       renderer.setSize(window.innerWidth, window.innerHeight);
     }
+
     function onMouseMove(event) {
       mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
       mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
     }
+    
     init3D();
 
-    // Page Navigation
+    // --- APPLICATION NAVIGATION MANAGEMENT MATRIX ---
     const pages = document.querySelectorAll('.page-content');
-    const navLinks = document.querySelectorAll('.nav-link'); // Includes home page buttons now
-    const mobileNavLinks = document.querySelectorAll('.nav-link-mobile');
     
     function showPage(pageId) { 
-      // --- AUTH CHECK ---
-      // This check redirects a user to auth if they are NOT logged in
-      // AND their trial is NOT available (i.e., they've used it)
-      if (pageId === 'create' && !isLoggedIn && !trialAvailable) {
-        console.log('Auth required for create page. Trial used.');
-        showPage('auth'); // Redirect to auth page
+      if (pageId === 'create' && !appAuthTokenState && !trialAvailable) {
+        showPage('auth');
         return;
       }
 
       pages.forEach(p => p.classList.toggle('hidden', `page-${pageId}` !== p.id)); 
       updateNavLinks(pageId); 
+      
       if (pageId === 'create') {
         resetForm();
         document.getElementById('history-sidebar').classList.remove('open');
@@ -752,36 +551,35 @@
         resetCommunityForm();
       }
     }
+
     function updateNavLinks(activePageId) { 
-        // Update only the main navbar links, not the home page buttons
-        document.querySelectorAll('nav .nav-link').forEach(l => l.classList.toggle('active', l.dataset.page === activePageId)); 
+      document.querySelectorAll('nav .nav-link').forEach(l => l.classList.toggle('active', l.dataset.page === activePageId)); 
     }
+
     function handleNavClick(e) { 
       e.preventDefault(); 
       const pageId = e.currentTarget.dataset.page;
       showPage(pageId); 
       document.getElementById('mobileMenu').classList.add('hidden'); 
     }
-    // Apply navigation to all elements with data-page (including the home page buttons)
+
     document.querySelectorAll('[data-page]').forEach(link => {
-        if (!link.classList.contains('nav-link-mobile')) { // Avoid double-binding mobile links
-            link.addEventListener('click', handleNavClick);
-        }
+      if (!link.classList.contains('nav-link-mobile')) {
+        link.addEventListener('click', handleNavClick);
+      }
     });
-    // Specifically handle mobile links separately
-    mobileNavLinks.forEach(link => link.addEventListener('click', handleNavClick));
+    document.querySelectorAll('.nav-link-mobile').forEach(link => link.addEventListener('click', handleNavClick));
 
-
-    // Mobile Menu Toggle
     document.getElementById("menuBtn").addEventListener("click", () => { 
       document.getElementById("mobileMenu").classList.toggle("hidden"); 
     });
 
-    // Theme Toggle
+    // --- INTERACTION CODES & GRAPHIC DESIGN MUTATIONS ---
     const htmlEl = document.documentElement;
     const themeToggle = document.getElementById("themeToggle");
     const sunIcon = document.getElementById("sunIcon");
     const moonIcon = document.getElementById("moonIcon");
+
     function updateTheme(isLight) {
       htmlEl.classList.toggle('light', isLight);
       htmlEl.classList.toggle('dark', !isLight);
@@ -799,6 +597,7 @@
         }
       }
     }
+
     const savedThemeIsLight = localStorage.getItem('theme') === 'light';
     updateTheme(savedThemeIsLight);
     themeToggle.addEventListener('click', () => {
@@ -807,12 +606,10 @@
       updateTheme(!isCurrentlyLight);
     });
 
-    // Form Reset Function (Create Page)
     function resetForm() {
       const form = document.getElementById('create-form');
       form.reset();
-      const languagePills = document.querySelectorAll('.language-pill');
-      languagePills.forEach(p => p.classList.remove('selected'));
+      document.querySelectorAll('.language-pill').forEach(p => p.classList.remove('selected'));
       document.querySelector('.language-pill[data-value="en"]').classList.add('selected');
       document.getElementById('language-input').value = 'en';
       document.getElementById('topic-error').classList.add('hidden');
@@ -821,82 +618,65 @@
       document.getElementById('tone-intensity-value').textContent = '5';
       document.getElementById('word-count-value').textContent = '500';
       document.getElementById('word-count').textContent = '0 words';
-      const topicTextarea = form.querySelector('textarea[name="topic"]');
-      topicTextarea.style.height = 'auto';
+      form.querySelector('textarea[name="topic"]').style.height = 'auto';
     }
 
-    // Community Form Reset Function
     function resetCommunityForm() {
       const form = document.getElementById('community-post-form');
       form.reset();
       document.getElementById('post-title-error').classList.add('hidden');
       document.getElementById('post-description-error').classList.add('hidden');
       document.getElementById('post-tags-error').classList.add('hidden');
-      // Hide success message on reset
       document.getElementById('post-success').classList.add('hidden');
-      const descriptionTextarea = form.querySelector('textarea[name="post-description"]');
-      descriptionTextarea.style.height = 'auto';
+      form.querySelector('textarea[name="post-description"]').style.height = 'auto';
     }
 
-    // Language Pill Selection
-    const languagePills = document.querySelectorAll('.language-pill');
-    const languageInput = document.getElementById('language-input');
-    const languageError = document.getElementById('language-error');
-    languagePills.forEach(pill => {
+    // Language select parsing
+    document.querySelectorAll('.language-pill').forEach(pill => {
       pill.addEventListener('click', () => {
-        languagePills.forEach(p => p.classList.remove('selected'));
+        document.querySelectorAll('.language-pill').forEach(p => p.classList.remove('selected'));
         pill.classList.add('selected');
-        languageInput.value = pill.dataset.value;
-        languageError.classList.add('hidden');
+        document.getElementById('language-input').value = pill.dataset.value;
+        document.getElementById('language-error').classList.add('hidden');
       });
     });
 
-    // Slider Value Displays
     const wordCountSlider = document.querySelector('input[name="word_count"]');
     const wordCountValue = document.getElementById('word-count-value');
-    wordCountValue.textContent = wordCountSlider.value;
-    wordCountSlider.addEventListener('input', () => {
-      wordCountValue.textContent = wordCountSlider.value;
-    });
+    wordCountSlider.addEventListener('input', () => { wordCountValue.textContent = wordCountSlider.value; });
 
     const toneIntensitySlider = document.querySelector('input[name="tone_intensity"]');
     const toneIntensityValue = document.getElementById('tone-intensity-value');
-    toneIntensityValue.textContent = toneIntensitySlider.value;
-    toneIntensitySlider.addEventListener('input', () => {
-      toneIntensityValue.textContent = toneIntensitySlider.value;
-    });
+    toneIntensitySlider.addEventListener('input', () => { toneIntensityValue.textContent = toneIntensitySlider.value; });
 
-    // Toggle History Sidebar
+    // --- ARCHIVE ROUTINES & SIDEBAR CONTROL ---
     const toggleHistoryOpen = document.getElementById('toggle-history-open');
     const toggleHistoryClose = document.getElementById('toggle-history');
     const historySidebar = document.getElementById('history-sidebar');
+
     toggleHistoryOpen.addEventListener('click', () => {
       historySidebar.classList.add('open');
-      if (isLoggedIn) {
+      if (appAuthTokenState) {
         loadHistory();
       } else {
-        // Show login prompt if not logged in
         document.getElementById('history-loading').classList.add('hidden');
         document.getElementById('history-empty').classList.add('hidden');
         document.getElementById('history-login-prompt').classList.remove('hidden');
       }
     });
-    toggleHistoryClose.addEventListener('click', () => {
-      historySidebar.classList.remove('open');
-    });
+    toggleHistoryClose.addEventListener('click', () => { historySidebar.classList.remove('open'); });
     document.getElementById('history-login-btn').addEventListener('click', () => {
       historySidebar.classList.remove('open');
       showPage('auth');
     });
 
-    // Chat Logic
+    // --- SYSTEM CORE GENERATION FORWARD ENGINE MODULE ---
     const createForm = document.getElementById('create-form');
     const chatHistory = document.getElementById('chat-history');
     const submitButton = document.getElementById('submit-button');
     const topicTextarea = createForm.querySelector('textarea[name="topic"]');
     const topicError = document.getElementById('topic-error');
     const wordCountDisplay = document.getElementById('word-count');
-    const keywordsInput = createForm.querySelector('input[name="keywords"]');
     const keywordsError = document.getElementById('keywords-error');
 
     topicTextarea.addEventListener('input', () => {
@@ -909,7 +689,7 @@
 
     function appendMessage(content, sender = 'bot') {
       const messageWrapper = document.createElement('div');
-      messageWrapper.classList.add('chat-message', sender === 'user' ? 'user-message' : 'bot-message');
+      messageWrapper.className = `chat-message ${sender === 'user' ? 'user-message' : 'bot-message'}`;
       const contentP = document.createElement('p');
       contentP.textContent = content;
       messageWrapper.appendChild(contentP);
@@ -925,27 +705,27 @@
       let metaInfo = '';
       if (s3_key) metaInfo += `<p class="text-xs text-white/50 mt-1">S3 Key: ${s3_key}</p>`;
       if (blogId) metaInfo += `<p class="text-xs text-white/50 mt-1">Blog ID: ${blogId}</p>`;
-      metaInfo += `<p class="text-xs text-white/50 mt-1">Language: ${language}</p>`;
+      metaInfo += `<p class="text-xs text-white/50 mt-1">Language Architecture: ${language}</p>`;
 
       const cardHtml = `
           <div class="bot-message chat-message w-full max-w-full p-0 bg-transparent lang-${language}">
             <div class="bot-response-card p-4">
               <div class="progress-bar w-0 mb-3"></div>
-              <div class="flex justify-between items-center mb-3">
+              <div class="flex flex-wrap justify-between items-center gap-2 mb-3">
                 <div class="flex items-center space-x-2">
-                  <div class="text-sm font-bold text-var-text">Forging Complete</div>
-                  <div class="text-xs font-semibold px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300">Score: ${quality_score || 0.0}%</div>
+                  <div class="text-sm font-bold text-var-text">Forging Engine Execution Finished</div>
+                  <div class="text-xs font-semibold px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300">Score Matrix: ${quality_score || 0}%</div>
                 </div>
                 <div class="flex space-x-2">
                   <button class="text-xs text-var-primary hover:underline pause-typewriter" data-id="${uniqueId}">⏸ Pause</button>
                   <button class="text-xs text-var-primary hover:underline edit-content" data-id="${uniqueId}">Edit</button>
                   <button class="text-xs text-var-primary hover:underline save-edits hidden" data-id="${uniqueId}">Save Edits</button>
-                  <button class="text-xs text-var-primary hover:underline share-community" data-id="${uniqueId}" data-content="${encodeURIComponent(content || '')}" data-summary="${encodeURIComponent(summary || '')}">Share to Community</button>
-                  <button class="text-xs text-var-primary hover:underline export-pdf" data-blogid="${blogId || 'content'}">PDF</button>
+                  <button class="text-xs text-var-primary hover:underline share-community" data-id="${uniqueId}" data-content="${encodeURIComponent(content || '')}" data-summary="${encodeURIComponent(summary || '')}">Share Matrix</button>
+                  <button class="text-xs text-var-primary hover:underline export-pdf" data-blogid="${blogId || 'content'}">Export PDF</button>
                   <button class="text-xs text-var-primary hover:underline export-html" data-blogid="${blogId || 'content'}">HTML</button>
                 </div>
               </div>
-              ${summary ? `<div class="summary-box text-sm text-var-muted"><strong>Key Points:</strong><br>${summary.replace(/\n/g, '<br>')}</div>` : ''}
+              ${summary ? `<div class="summary-box text-sm text-var-muted"><strong>Key Architectural Vectors:</strong><br>${summary.replace(/\n/g, '<br>')}</div>` : ''}
               <div class="rendered-content text-white/90 text-sm mb-4 p-3 bg-black/20 rounded overflow-hidden" style="min-height: 50px;"></div>
               ${metaInfo ? `<div class="mt-3 pt-3 border-t border-white/10">${metaInfo}</div>` : ''}
             </div>
@@ -961,7 +741,7 @@
       const progressBar = cardWrapper.querySelector('.progress-bar');
       
       if (error) {
-        contentElement.innerHTML = `<p class="text-red-400">Error: ${error}</p>`;
+        contentElement.innerHTML = `<p class="text-red-400">Execution Block Exception error: ${error}</p>`;
         progressBar.style.width = '100%';
         progressBar.style.backgroundColor = '#ef4444';
         return;
@@ -970,7 +750,6 @@
       if (content) {
         let isTyping = true;
         let animationFrameId;
-
         const tokens = content.match(/<[^>]+>|\S+/g) || [];
         let tokenIndex = 0;
         
@@ -979,33 +758,21 @@
             contentElement.innerHTML = content;
             progressBar.style.width = '100%';
             const pauseBtn = cardWrapper.querySelector('.pause-typewriter');
-            if(pauseBtn) {
-              pauseBtn.textContent = 'Done';
-              pauseBtn.disabled = true;
-            }
+            if(pauseBtn) { pauseBtn.textContent = 'Completed'; pauseBtn.disabled = true; }
             return;
           }
-
           contentElement.innerHTML += tokens[tokenIndex] + ' ';
           tokenIndex++;
-          
           progressBar.style.width = `${(tokenIndex / tokens.length) * 100}%`;
           chatHistory.scrollTop = chatHistory.scrollHeight;
-          
-          animationFrameId = setTimeout(typeToken, 70);
+          animationFrameId = setTimeout(typeToken, 45);
         }
-
         typeToken();
 
-        const pauseButton = cardWrapper.querySelector('.pause-typewriter');
-        pauseButton.addEventListener('click', () => {
+        cardWrapper.querySelector('.pause-typewriter').addEventListener('click', (e) => {
           isTyping = !isTyping;
-          pauseButton.textContent = isTyping ? '⏸ Pause' : '▶ Resume';
-          if (isTyping) {
-            typeToken();
-          } else {
-            clearTimeout(animationFrameId);
-          }
+          e.currentTarget.textContent = isTyping ? '⏸ Pause' : '▶ Resume';
+          if (isTyping) typeToken(); else clearTimeout(animationFrameId);
         });
 
         const editButton = cardWrapper.querySelector('.edit-content');
@@ -1028,136 +795,47 @@
         });
         
         cardWrapper.querySelector('.export-pdf').addEventListener('click', async (e) => {
-          const blogId = e.currentTarget.dataset.blogid;
+          const bId = e.currentTarget.dataset.blogid;
           const { jsPDF } = window.jspdf;
-          
           const source = cardWrapper.querySelector('.rendered-content').cloneNode(true);
           source.style.backgroundColor = '#ffffff';
           source.style.color = '#000000';
           source.style.padding = '20px';
-          source.style.fontFamily = '"Inter", Arial, sans-serif';
-          source.style.fontSize = '12px';
-          source.style.lineHeight = '1.6';
-          source.style.width = '100%';
-          source.style.maxWidth = '550px'; 
+          source.style.width = '550px'; 
           
-          const h1s = source.querySelectorAll('h1');
-          h1s.forEach(h => {
-              h.style.fontSize = '24px';
-              h.style.fontWeight = '800';
-              h.style.color = '#059669';
-              h.style.margin = '20px 0 10px 0';
-          });
-          const h2s = source.querySelectorAll('h2');
-          h2s.forEach(h => {
-              h.style.fontSize = '18px';
-              h.style.fontWeight = '700';
-              h.style.color = '#059669';
-              h.style.margin = '15px 0 8px 0';
-          });
-          const ps = source.querySelectorAll('p');
-          ps.forEach(p => {
-              p.style.margin = '12px 0';
-              p.style.color = '#333333';
-          });
-
           const tempDiv = document.createElement('div');
           tempDiv.style.position = 'absolute';
           tempDiv.style.left = '-9999px';
-          tempDiv.style.top = '0';
           tempDiv.style.width = '550px'; 
-          tempDiv.style.backgroundColor = '#ffffff';
           tempDiv.appendChild(source);
           document.body.appendChild(tempDiv);
 
           try {
-              const canvas = await html2canvas(tempDiv, {
-                  scale: 2, 
-                  useCORS: true,
-                  allowTaint: true,
-                  backgroundColor: '#ffffff',
-                  logging: false,
-                  letterRendering: true,
-                  width: tempDiv.scrollWidth,
-                  height: tempDiv.scrollHeight
-              });
-
-              document.body.removeChild(tempDiv);
-
-              const doc = new jsPDF('p', 'mm', 'a4');
-              const pdfWidth = doc.internal.pageSize.getWidth();
-              const pdfHeight = doc.internal.pageSize.getHeight();
-              const margin = 15; 
-              const contentHeight = pdfHeight - (2 * margin); 
-              const imgWidth = pdfWidth - (2 * margin);
-              const imgHeight = (canvas.height * imgWidth) / canvas.width; 
-              let heightLeft = imgHeight;
-              let position = margin;
-
-              const imgData = canvas.toDataURL('image/png', 1.0); 
-
-              doc.addImage(imgData, 'PNG', margin, position, imgWidth, imgHeight);
-              heightLeft -= contentHeight;
-
-              while (heightLeft >= 0) {
-                  position = heightLeft - imgHeight + margin;
-                  doc.addPage();
-                  doc.addImage(imgData, 'PNG', margin, position, imgWidth, imgHeight);
-                  
-                  doc.setFillColor(255, 255, 255);
-                  doc.rect(0, 0, pdfWidth, margin, 'F'); 
-                  doc.rect(0, pdfHeight - margin, pdfWidth, margin, 'F'); 
-                  
-                  heightLeft -= contentHeight;
-              }
-
-              doc.save(`${blogId}.pdf`);
-          } catch (error) {
-              console.error('PDF generation error:', error);
-              alert('Failed to generate PDF. Check console for details.');
+            const canvas = await html2canvas(tempDiv, { scale: 2, useCORS: true, backgroundColor: '#ffffff' });
+            document.body.removeChild(tempDiv);
+            const doc = new jsPDF('p', 'mm', 'a4');
+            const imgData = canvas.toDataURL('image/png', 1.0);
+            doc.addImage(imgData, 'PNG', 15, 15, 180, (canvas.height * 180) / canvas.width);
+            doc.save(`${bId}.pdf`);
+          } catch (err) {
+            console.error(err);
           }
-      });
+        });
 
         cardWrapper.querySelector('.export-html').addEventListener('click', (e) => {
-          const blogId = e.currentTarget.dataset.blogid;
-          const currentContent = cardWrapper.querySelector('.rendered-content').innerHTML;
-          const htmlContent = `
-              <!DOCTYPE html>
-              <html lang="en">
-              <head>
-                  <meta charset="UTF-8">
-                  <title>${blogId}</title>
-                  <style>
-                      body { font-family: 'Inter', Arial, sans-serif; margin: 20px; line-height: 1.6; }
-                      h1, h2 { color: #059669; }
-                      h1 { font-size: 2rem; font-weight: 800; }
-                      h2 { font-size: 1.5rem; font-weight: 700; }
-                      p { margin: 1rem 0; }
-                  </style>
-              </head>
-              <body>${currentContent}</body>
-              </html>`;
-          const blob = new Blob([htmlContent], { type: 'text/html' });
+          const bId = e.currentTarget.dataset.blogid;
+          const blob = new Blob([`<html><body>${cardWrapper.querySelector('.rendered-content').innerHTML}</body></html>`], { type: 'text/html' });
           const link = document.createElement('a');
           link.href = URL.createObjectURL(blob);
-          link.download = `${blogId}.html`;
+          link.download = `${bId}.html`;
           link.click();
-          URL.revokeObjectURL(link.href);
         });
 
         cardWrapper.querySelector('.share-community').addEventListener('click', () => {
           showPage('community');
-          const postTitle = document.querySelector('#community-post-form input[name="post-title"]');
-          const postDescription = document.querySelector('#community-post-form textarea[name="post-description"]');
-          postTitle.value = `My Forged Content (${language})`;
-          postDescription.value = decodeURIComponent(summary || '') + '\n\n' + decodeURIComponent(content || '');
-          postDescription.style.height = 'auto';
-          postDescription.style.height = (postDescription.scrollHeight) + 'px';
+          document.querySelector('#community-post-form input[name="post-title"]').value = `My Forged Content Architecture (${language})`;
+          document.querySelector('#community-post-form textarea[name="post-description"]').value = decodeURIComponent(summary || '') + '\n\n' + decodeURIComponent(content || '');
         });
-      } else {
-        contentElement.innerHTML = `<p class="text-red-400">No content generated. Please check the API response or try again.</p>`;
-        progressBar.style.width = '100%';
-        progressBar.style.backgroundColor = '#ef4444';
       }
     }
 
@@ -1166,35 +844,25 @@
       const formData = new FormData(createForm);
       const data = Object.fromEntries(formData.entries());
 
-      if (!data.topic) {
-        topicError.textContent = 'Please enter a topic.';
+      if (!data.topic.trim()) {
+        topicError.textContent = 'Please enter a valid topic context brief.';
         topicError.classList.remove('hidden');
         return;
-      } else {
-        topicError.classList.add('hidden');
       }
-      if (!data.language) {
-        languageError.textContent = 'Please select a language.';
-        languageError.classList.remove('hidden');
-        return;
-      } else {
-        languageError.classList.add('hidden');
-      }
+      topicError.classList.add('hidden');
+
       const keywords = data.keywords ? data.keywords.split(',').map(k => k.trim()).filter(k => k) : [];
       if (keywords.length > 5) {
-        keywordsError.textContent = 'Maximum 5 non-empty keywords allowed.';
         keywordsError.classList.remove('hidden');
         return;
-      } else {
-        keywordsError.classList.add('hidden');
-        data.keywords = keywords.join(',');
       }
+      keywordsError.classList.add('hidden');
+      data.keywords = keywords.join(',');
 
       appendMessage(data.topic, 'user');
       resetForm();
       submitButton.disabled = true;
-
-      const placeholder = appendMessage('🔨 Forging content...', 'bot');
+      const placeholder = appendMessage('🔨 Engineering context arrays into production data modules...', 'bot');
 
       try {
         const response = await fetch('/generate-blog', {
@@ -1206,429 +874,189 @@
         chatHistory.removeChild(placeholder);
         const result = await response.json();
 
-        // --- AUTH ERROR HANDLING ---
         if (!response.ok) {
-            if (response.status === 401) {
-                appendMessage(`⚠️ Error: ${result.error || 'Authentication required.'} Please log in.`, 'bot');
-                showPage('auth'); // Redirect to login
-            } else {
-                appendMessage(`⚠️ Error: ${result.error || 'An unknown error occurred.'}`, 'bot');
-            }
-            return;
-        }
-
-        // --- If response is OK (200) ---
-        const lang = data.language;
-        const contentData = result.results[lang] || { error: `No data returned for language: ${lang}` };
-        
-        if (contentData.error) {
-          appendMessage(`⚠️ Error for ${lang}: ${contentData.error}`, 'bot');
+          if (response.status === 401) {
+            appendMessage(`⚠️ Error payload authorization context failure. Retrying redirect.`, 'bot');
+            showPage('auth');
+          } else {
+            appendMessage(`⚠️ Server exception error code status: ${result.error || 'Unknown standard exception.'}`, 'bot');
+          }
           return;
         }
 
-        if (contentData.s3_key && !contentData.content) {
-          const fetchingMsg = appendMessage(`📦 Content stored on S3 for ${lang}. Fetching...`, 'bot');
-          try {
-            const bucketRegion = 'us-east-1';
-            const s3Url = `https://agentx-blog.s3.${bucketRegion}.amazonaws.com/${contentData.s3_key}`;
-            const s3Response = await fetch(s3Url);
-            if (!s3Response.ok) throw new Error(`S3 fetch failed: ${s3Response.status}`);
-            contentData.content = await s3Response.text();
-            chatHistory.removeChild(fetchingMsg);
-          } catch (s3Error) {
-            contentData.error = `Failed to fetch from S3 for ${lang}: ${s3Error.message}`;
-            chatHistory.removeChild(fetchingMsg);
-          }
-        }
-        displayForgedContent(contentData, lang);
+        const lang = data.language;
+        const contentData = result.results[lang] || { error: `Matrix dynamic missing mapping target language parameter layout config.` };
         
-        // Refresh history IF logged in
-        if (isLoggedIn) {
-            historySidebar.classList.add('open');
-            await loadHistory();
-        } else {
-            // This was a trial run, so mark trial as used
-            trialAvailable = false;
-            document.getElementById('guest-continue-btn').textContent = 'Trial Used - Please Sign Up';
-            document.getElementById('guest-continue-btn').disabled = true;
+        if (contentData.error) {
+          appendMessage(`⚠️ Runtime Engine Execution Error: ${contentData.error}`, 'bot');
+          return;
         }
 
+        displayForgedContent(contentData, lang);
+        
+        if (appAuthTokenState) {
+          await loadHistory();
+        } else {
+          trialAvailable = false;
+          document.getElementById('guest-continue-btn').textContent = 'Trial Matrix Expired';
+          document.getElementById('guest-continue-btn').disabled = true;
+        }
       } catch (error) {
-        chatHistory.removeChild(placeholder);
-        appendMessage(`⚠️ Network Error: ${error.message}`, 'bot');
+        if(placeholder.parentNode) chatHistory.removeChild(placeholder);
+        appendMessage(`⚠️ Networking core configuration disruption: ${error.message}`, 'bot');
       } finally {
         submitButton.disabled = false;
       }
     });
 
-    // Global state for history items
-    let allHistoryItems = [];
-
-    // Load History
+    // --- LOGISTICS COMPILER RECONSTRUCTION ACTIONS ---
     async function loadHistory() {
-      // Only proceed if logged in
-      if (!isLoggedIn) {
-          console.log("Not logged in, skipping history load.");
-          document.getElementById('history-loading').classList.add('hidden');
-          document.getElementById('history-empty').classList.add('hidden');
-          document.getElementById('history-login-prompt').classList.remove('hidden');
-          return;
-      }
-        
+      if (!appAuthTokenState) return;
       const historyList = document.getElementById('history-list');
-      const historyEmpty = document.getElementById('history-empty');
-      const historyLoading = document.getElementById('history-loading');
-      const historyLoginPrompt = document.getElementById('history-login-prompt');
-      
-      // Remove all previous items (static and dynamic)
-      historyList.innerHTML = ''; // Clear list
-      historyLoading.classList.remove('hidden'); // Show loading
-      historyEmpty.classList.add('hidden');
-      historyLoginPrompt.classList.add('hidden');
+      historyList.innerHTML = '<div class="history-loading">Connecting server dynamic vault...</div>';
 
       try {
         const response = await fetch('/history');
-        if (response.status === 401) {
-            // This should not happen if isLoggedIn is true, but as a safeguard
-            throw new Error('401'); 
-        }
-        if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
-        
+        if (!response.ok) throw new Error('Vault context synchronization broken.');
         const items = await response.json();
-        allHistoryItems = items; // Store globally for comparison feature
-        console.log('History fetched:', items);
+        allHistoryItems = items;
+        historyList.innerHTML = '';
 
-        historyLoading.classList.add('hidden');
-
-        if (!Array.isArray(items) || items.length === 0) {
-          historyEmpty.classList.remove('hidden'); // Show empty message
+        if (items.length === 0) {
+          document.getElementById('history-empty').classList.remove('hidden');
           return;
         }
 
-        historyEmpty.classList.add('hidden');
-        // Group items by brief
-        const groupedByBrief = items.reduce((acc, item) => {
-          acc[item.brief] = acc[item.brief] || [];
-          acc[item.brief].push(item);
-          return acc;
-        }, {});
-
-        // Sort groups by the most recent item in each group
-        const sortedGroups = Object.entries(groupedByBrief).sort(([, versionsA], [, versionsB]) => {
-            const latestA = versionsA.sort((a, b) => new Date(b.created_at) - new Date(a.created_at))[0];
-            const latestB = versionsB.sort((a, b) => new Date(b.created_at) - new Date(a.created_at))[0];
-            return new Date(latestB.created_at) - new Date(latestA.created_at);
+        items.forEach(item => {
+          const div = document.createElement('div');
+          div.className = 'history-item rounded-lg';
+          div.innerHTML = `
+            <p class="text-sm font-semibold text-var-text mb-1">${item.brief.slice(0, 45)}...</p>
+            <div class="flex gap-1">
+              <span class="bg-gray-700 text-gray-300 text-[10px] px-2 py-0.5 rounded-full">${item.language}</span>
+              <span class="bg-gray-700 text-gray-300 text-[10px] px-2 py-0.5 rounded-full">v${item.version || '1.0'}</span>
+            </div>
+            <div class="text-right mt-2">
+              <button class="text-xs text-var-primary hover:underline load-archived" data-id="${item.id}">View Module</button>
+            </div>`;
+          historyList.appendChild(div);
         });
-
-        // Populate list
-        for (const [brief, versions] of sortedGroups) {
-          const latestVersion = versions.sort((a,b) => new Date(b.created_at) - new Date(a.created_at))[0]; // Show the latest
-          const historyItem = document.createElement('div');
-          historyItem.classList.add('history-item', 'rounded-lg', 'dynamic');
-          historyItem.innerHTML = `
-              <div>
-                <p class="text-sm font-semibold text-var-text mb-1">${brief.slice(0, 50)}${brief.length > 50 ? '...' : ''}</p>
-                <div class="mb-1">
-                  <span class="inline-block bg-gray-700 text-gray-300 text-xs font-semibold mr-1 px-2 py-0.5 rounded-full">${latestVersion.language}</span>
-                  <span class="inline-block bg-gray-700 text-gray-300 text-xs font-semibold mr-1 px-2 py-0.5 rounded-full">${latestVersion.tone}</span>
-                  <span class="inline-block bg-gray-700 text-gray-300 text-xs font-semibold px-2 py-0.5 rounded-full">${latestVersion.version} (${versions.length} versions)</span>
-                </div>
-                <div class="text-right mt-2">
-                  <button class="text-xs text-var-primary hover:underline view-content" data-content="${encodeURIComponent(latestVersion.result_text)}" data-blogid="${latestVersion.id}" data-language="${latestVersion.language}">View Latest</button>
-                  <button class="text-xs text-var-primary hover:underline compare-versions ml-2" data-brief="${encodeURIComponent(brief)}">Compare</button>
-                </div>
-              </div>`;
-          historyList.appendChild(historyItem);
-        }
-      } catch (error) {
-        console.error('Failed to load history:', error);
-        historyLoading.classList.add('hidden');
-        if (error.message.includes('401')) {
-            historyLoginPrompt.classList.remove('hidden');
-        } else {
-            historyList.innerHTML += `<p class="text-red-400 p-4">Error loading history.</p>`;
-        }
+      } catch (err) {
+        historyList.innerHTML = '<p class="text-red-400 text-xs p-2">Failed synchronization pipeline.</p>';
       }
     }
 
-    // Modal helper function
-    function createModal(contentHtml, title = 'Details') {
-      const modalOverlay = document.createElement('div');
-      modalOverlay.className = 'fixed inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center z-[100] p-4 fade-in';
-      modalOverlay.innerHTML = `
-          <div class="bg-gray-800 rounded-lg shadow-xl w-full max-w-6xl max-h-[90vh] flex flex-col glass-card">
-            <div class="p-4 border-b border-[rgba(55,65,81,0.5)] flex justify-between items-center">
-              <h2 class="text-xl font-bold text-var-primary">${title}</h2>
-              <button class="text-2xl text-var-muted hover:text-var-primary">&times;</button>
-            </div>
-            <div class="p-6 overflow-y-auto">
-              ${contentHtml}
-            </div>
-          </div>
-      `;
-      document.body.appendChild(modalOverlay);
-      const closeModal = () => document.body.removeChild(modalOverlay);
-      modalOverlay.querySelector('button').addEventListener('click', closeModal);
-      modalOverlay.addEventListener('click', (e) => {
-        if (e.target === modalOverlay) closeModal();
-      });
-    }
-
-    // History Sidebar Event Delegation
-    document.getElementById('history-list').addEventListener('click', (e) => {
-      const target = e.target;
-      if (target.classList.contains('view-content')) {
-        e.preventDefault();
-        const content = decodeURIComponent(target.dataset.content);
-        const blogId = target.dataset.blogid;
-        const language = target.dataset.language || 'en';
-
-        chatHistory.innerHTML = ''; // Clear chat completely
-        appendMessage("Loaded from Archives. You can edit, export, or share below.", 'bot');
-        
-        displayForgedContent({
-          content: content,
-          blogId: `archive-${blogId}`,
-          quality_score: 'N/A',
-          summary: 'This content was loaded from your archives.'
-        }, language);
-
-        historySidebar.classList.remove('open');
-        showPage('create');
-      } else if (target.classList.contains('compare-versions')) {
-        e.preventDefault();
-        const brief = decodeURIComponent(target.dataset.brief);
-        const versionsToCompare = allHistoryItems.filter(item => item.brief === brief);
-
-        if (versionsToCompare.length > 0) {
-          const comparisonHtml = `
-              <div class="grid grid-cols-1 md:grid-cols-${Math.min(3, versionsToCompare.length)} gap-4">
-                ${versionsToCompare.map(v => `
-                  <div class="border border-gray-700 rounded-lg p-4 bg-black/20">
-                    <div class="flex justify-between items-center mb-2 pb-2 border-b border-gray-700">
-                      <span class="font-bold text-var-text">${v.version || 'v?.?'}</span>
-                      <span class="text-xs bg-gray-700 text-gray-300 px-2 py-0.5 rounded-full">${v.tone || 'unknown'}</span>
-                    </div>
-                    <div class="rendered-content text-sm max-h-96 overflow-y-auto">${v.result_text || 'No content available.'}</div>
-                  </div>
-                `).join('')}
-              </div>
-          `;
-          createModal(comparisonHtml, `Comparing: ${brief}`);
-        } else {
-          alert('Could not find versions to compare.');
-        }
-      }
-    });
-
-    // Inspire Page Logic
-    document.getElementById('page-inspire').addEventListener('click', (e) => {
-      if (e.target.classList.contains('use-topic')) {
-        const topic = e.target.dataset.topic;
-        showPage('create');
-        const topicTextarea = document.querySelector('#create-form textarea[name="topic"]');
-        topicTextarea.value = topic;
-        topicTextarea.dispatchEvent(new Event('input', { bubbles: true })); // Trigger auto-resize and word count
-        topicTextarea.focus();
-      }
-    });
-
-    // Community Page Logic
-    const communityForm = document.getElementById('community-post-form');
-    communityForm.addEventListener('submit', (e) => {
-      e.preventDefault();
-      const titleInput = communityForm.querySelector('input[name="post-title"]');
-      const descriptionInput = communityForm.querySelector('textarea[name="post-description"]');
-      const tagsInput = communityForm.querySelector('input[name="post-tags"]');
-      
-      const titleError = document.getElementById('post-title-error');
-      const descriptionError = document.getElementById('post-description-error');
-      const tagsError = document.getElementById('post-tags-error');
-      
-      // *** HIDE SUCCESS MESSAGE ON NEW SUBMIT ***
-      const postSuccess = document.getElementById('post-success');
-      postSuccess.classList.add('hidden');
-
-      let isValid = true;
-      
-      if (!titleInput.value.trim()) { titleError.classList.remove('hidden'); isValid = false; } else { titleError.classList.add('hidden'); }
-      if (!descriptionInput.value.trim()) { descriptionError.classList.remove('hidden'); isValid = false; } else { descriptionError.classList.add('hidden'); }
-      
-      const tags = tagsInput.value.split(',').map(t => t.trim()).filter(t => t);
-      if (tags.length > 5) { tagsError.classList.remove('hidden'); isValid = false; } else { tagsError.classList.add('hidden'); }
-
-      if (isValid) {
-        const communityGrid = document.querySelector('#page-community .grid');
-        const newPost = document.createElement('div');
-        newPost.className = 'community-card glass-card p-6 rounded-xl text-left fade-in';
-        newPost.innerHTML = `
-            <h3 class="text-xl font-bold mb-2">${titleInput.value}</h3>
-            <p class="text-var-muted text-sm mb-4">${descriptionInput.value.slice(0, 100)}...</p>
-            <p class="text-xs text-var-muted mb-2">By: ${currentUsername || 'Guest'} | Posted: Just Now</p>
-            <p class="text-xs text-var-muted">Tags: ${tags.join(', ')}</p>
-            <button class="mt-4 text-xs text-var-primary hover:underline view-community-post" data-title="${encodeURIComponent(titleInput.value)}" data-content="${encodeURIComponent(descriptionInput.value)}">View Post</button>
-        `;
-        communityGrid.insertBefore(newPost, communityGrid.children[0]);
-        resetCommunityForm();
-        
-        // *** SHOW SUCCESS MESSAGE AND HIDE IT AFTER 3 SECONDS ***
-        postSuccess.classList.remove('hidden');
-        setTimeout(() => {
-            postSuccess.classList.add('hidden');
-        }, 3000);
-        
-        // *** REMOVED REDIRECT AND CHAT MESSAGE ***
-        // showPage('create'); 
-        // appendMessage("Successfully shared to the community!", 'bot');
-      }
-    });
-
-    document.getElementById('page-community').addEventListener('click', (e) => {
-      if (e.target.classList.contains('view-community-post')) {
-        const title = decodeURIComponent(e.target.dataset.title);
-        const content = decodeURIComponent(e.target.dataset.content);
-        const modalContent = `<div class="prose prose-invert max-w-none text-var-text">${content.replace(/\n/g, '<br>')}</div>`;
-        createModal(modalContent, title);
-      }
-    });
-
-    // --- AUTH LOGIC ---
-    const loginContainer = document.getElementById('login-container');
-    const signupContainer = document.getElementById('signup-container');
-    const showSignupBtn = document.getElementById('show-signup');
-    const showLoginBtn = document.getElementById('show-login');
+    // --- AUTH MODULE COMPONENT ACTIONS ---
     const loginForm = document.getElementById('login-form');
     const signupForm = document.getElementById('signup-form');
     const loginError = document.getElementById('login-error');
     const signupError = document.getElementById('signup-error');
-    const guestContinueBtn = document.getElementById('guest-continue-btn');
 
-    showSignupBtn.addEventListener('click', () => {
-      loginContainer.classList.add('hidden');
-      signupContainer.classList.remove('hidden');
+    document.getElementById('show-signup').addEventListener('click', () => {
+      document.getElementById('login-container').classList.add('hidden');
+      document.getElementById('signup-container').classList.remove('hidden');
     });
-    showLoginBtn.addEventListener('click', () => {
-      signupContainer.classList.add('hidden');
-      loginContainer.classList.remove('hidden');
+    document.getElementById('show-login').addEventListener('click', () => {
+      document.getElementById('signup-container').classList.add('hidden');
+      document.getElementById('login-container').classList.remove('hidden');
     });
-    guestContinueBtn.addEventListener('click', () => {
-      // This button only works if trial is available
-      if (trialAvailable) {
-        showPage('create');
-      } else {
-        // If trial is used, force signup/login
-        showPage('auth');
-      }
-    });
+    document.getElementById('guest-continue-btn').addEventListener('click', () => { if(trialAvailable) showPage('create'); });
 
-    // Function to update the entire UI based on login state
     function updateNavUI(loggedIn, username = '') {
-      isLoggedIn = loggedIn;
+      appAuthTokenState = loggedIn; // Write into global operational variable state
       currentUsername = username;
       
-      const authBtns = [document.getElementById('auth-nav-btn'), document.getElementById('auth-nav-btn-mobile')];
-      const logoutBtns = [document.getElementById('logout-nav-btn'), document.getElementById('logout-nav-btn-mobile')];
+      const authElements = [document.getElementById('auth-nav-btn'), document.getElementById('auth-nav-btn-mobile')];
+      const logoutElements = [document.getElementById('logout-nav-btn'), document.getElementById('logout-nav-btn-mobile')];
+      const displays = [document.getElementById('user-nav-display'), document.getElementById('user-nav-display-mobile')];
       
-      // Get NEW profile display elements
-      const userDisplays = [document.getElementById('user-nav-display'), document.getElementById('user-nav-display-mobile')];
-      const usernameSpans = [document.getElementById('user-nav-username'), document.getElementById('user-nav-username-mobile')];
-
       if (loggedIn) {
-        // "Create" link is already visible, so no change needed
-        authBtns.forEach(b => b.classList.add('hidden'));
-        logoutBtns.forEach(b => b.classList.remove('hidden'));
-        
-        // Show profile structure and set username
-        userDisplays.forEach(d => d.classList.remove('hidden'));
-        usernameSpans.forEach(s => s.textContent = username);
+        authElements.forEach(el => el.classList.add('hidden'));
+        logoutElements.forEach(el => el.classList.remove('hidden'));
+        displays.forEach(el => el.classList.remove('hidden'));
+        document.getElementById('user-nav-username').textContent = username;
+        document.getElementById('user-nav-username-mobile').textContent = username;
       } else {
-        // "Create" link is already visible, so no change needed
-        authBtns.forEach(b => b.classList.remove('hidden'));
-        logoutBtns.forEach(b => b.classList.add('hidden'));
-
-        // Hide profile structure
-        userDisplays.forEach(d => d.classList.add('hidden'));
+        authElements.forEach(el => el.classList.remove('hidden'));
+        logoutElements.forEach(el => el.classList.add('hidden'));
+        displays.forEach(el => el.classList.add('hidden'));
       }
     }
 
-    // Login Form Submission
     loginForm.addEventListener('submit', async (e) => {
       e.preventDefault();
       loginError.style.display = 'none';
-      const formData = new FormData(loginForm);
-      const data = Object.fromEntries(formData.entries());
-
       try {
         const response = await fetch('/login', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(data)
+          body: JSON.stringify(Object.fromEntries(new FormData(loginForm)))
         });
-        const result = await response.json();
-        if (!response.ok) {
-          throw new Error(result.error || 'Login failed');
-        }
-        
-        // Login Success
-        updateNavUI(true, result.username);
-        trialAvailable = false; // Logged in, no trial needed
-        showPage('create'); // Go to create page after login
-      } catch (error) {
-        loginError.textContent = error.message;
+        const res = await response.json();
+        if (!response.ok) throw new Error(res.error || 'Server validation execution failure.');
+        updateNavUI(true, res.username);
+        showPage('create');
+      } catch (err) {
+        loginError.textContent = err.message;
         loginError.style.display = 'block';
       }
     });
 
-    // Signup Form Submission
     signupForm.addEventListener('submit', async (e) => {
       e.preventDefault();
       signupError.style.display = 'none';
-      const formData = new FormData(signupForm);
-      const data = Object.fromEntries(formData.entries());
-
       try {
         const response = await fetch('/signup', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(data)
+          body: JSON.stringify(Object.fromEntries(new FormData(signupForm)))
         });
-        const result = await response.json();
-        if (!response.ok) {
-          throw new Error(result.error || 'Signup failed');
-        }
-
-        // Signup Success
-        updateNavUI(true, result.username);
-        trialAvailable = false; // Signed up, no trial needed
-        showPage('create'); // Go to create page after signup
-      } catch (error) {
-        signupError.textContent = error.message;
+        const res = await response.json();
+        if (!response.ok) throw new Error(res.error || 'Registration processing runtime exception.');
+        updateNavUI(true, res.username);
+        showPage('create');
+      } catch (err) {
+        signupError.textContent = err.message;
         signupError.style.display = 'block';
       }
     });
 
-    // Logout Button
     function handleLogout() {
-      fetch('/logout', { method: 'POST' })
-        .then(() => {
-          updateNavUI(false); // Update nav to logged-out state
-          trialAvailable = false; // After logging out, trial is still considered used
-          document.getElementById('guest-continue-btn').textContent = 'Trial Used - Please Sign Up';
-          document.getElementById('guest-continue-btn').disabled = true;
-          showPage('home'); // Go to home page
-        });
+      fetch('/logout', { method: 'POST' }).then(() => {
+        updateNavUI(false);
+        trialAvailable = false;
+        showPage('home');
+      });
     }
     document.getElementById('logout-nav-btn').addEventListener('click', handleLogout);
     document.getElementById('logout-nav-btn-mobile').addEventListener('click', handleLogout);
-    
-    // Auth buttons (Login/Sign Up)
     document.getElementById('auth-nav-btn').addEventListener('click', () => showPage('auth'));
     document.getElementById('auth-nav-btn-mobile').addEventListener('click', () => {
-      document.getElementById('mobileMenu').classList.add('hidden'); 
+      document.getElementById('mobileMenu').classList.add('hidden');
       showPage('auth');
     });
 
-    // Check login status on page load
+    // --- COMMUNITY FORWARD MATRIX ---
+    const communityForm = document.getElementById('community-post-form');
+    communityForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const t = communityForm.querySelector('input[name="post-title"]').value;
+      const d = communityForm.querySelector('textarea[name="post-description"]').value;
+      if(t.trim() && d.trim()) {
+        document.getElementById('post-success').classList.remove('hidden');
+        setTimeout(() => resetCommunityForm(), 2000);
+      }
+    });
+
+    // Delegate capture on topic choices inside inspire page
+    document.getElementById('page-inspire').addEventListener('click', (e) => {
+      if(e.target.classList.contains('use-topic')) {
+        showPage('create');
+        topicTextarea.value = e.target.dataset.topic;
+        topicTextarea.dispatchEvent(new Event('input'));
+      }
+    });
+
     async function checkLoginStatus() {
       try {
         const response = await fetch('/check-session');
@@ -1639,24 +1067,15 @@
         } else {
           updateNavUI(false);
           trialAvailable = result.trial_available;
-          if (!trialAvailable) {
-            // Update guest button if trial is used
-            guestContinueBtn.textContent = 'Trial Used - Please Sign Up';
-            guestContinueBtn.disabled = true;
-          }
         }
-      } catch (error) {
-        console.error('Error checking session:', error);
+      } catch {
         updateNavUI(false);
-        trialAvailable = false; // Fail safe
+        trialAvailable = false;
       }
-      // Show home page after check
       showPage('home');
     }
-
-    // Initial Load
-    checkLoginStatus();
     
+    checkLoginStatus();
     </script>
   </body>
 </html>
