@@ -36,7 +36,7 @@ This tool is especially useful for:
 ### Frontend
 - HTML  
 - CSS  
-- JavaScript  
+- JS  
 
 ### Backend
 - Python  
